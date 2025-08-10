@@ -1,5 +1,5 @@
 --- 
-title: "Juan Marin"
+title: "Juan Marin, Santiago Hurtado"
 author: "Yihui Xie"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
