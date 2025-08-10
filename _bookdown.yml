@@ -7,3 +7,6 @@ output_dir: "docs"
 
 rmd_files:
   - index.Rmd
+  - Parejo.Rmd
+  - Marin.Rmd
+  - Hurtado.Rmd
