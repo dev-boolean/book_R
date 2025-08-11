@@ -5,3 +5,4 @@ intro
 literature
 methods
 math-example
+análisis-exploratorio-bivariado.

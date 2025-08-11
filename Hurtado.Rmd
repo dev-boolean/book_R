@@ -1,23 +1,105 @@
-# Methods
+# Análisis exploratorio bivariado.
 
-We describe our methods in this chapter.
+```{r}
+data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
 
-Math can be added in body using usual syntax like this 
+head(data,n=5)
+```
 
-## math example
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+```
 
-$p$ is unknown but expected to be around 1/3. Standard error will be approximated
+- A continuación vamos a comparar la variable y respecto a las variables numéricas independientes.
 
-$$
-SE = \sqrt{\frac{p(1-p)}{n}} \approx \sqrt{\frac{1/3 (1 - 1/3)} {300}} = 0.027
-$$
+```{r}
+# Diagrama boxplot: y vs age
+data %>%
+  ggplot(aes(x = y, y = age)) +
+  geom_boxplot(fill = "green", alpha = 0.6, color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  labs(
+    title = "Distribución de la edad según la respuesta del cliente",
+    x = "¿Aceptó el depósito a plazo fijo? (y)",
+    y = "Edad del cliente"
+  ) +
+  theme_bw() +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    strip.background = element_rect(fill = "gray90", color = NA),
+    strip.text = element_text(face = "bold")
+  )
 
-You can also use math in footnotes like this^[where we mention $p = \frac{a}{b}$].
+```
 
-We will approximate standard error to 0.027[^longnote]
+El grafico muestra la relación entre la variable y ("yes" o "no") y la variable numérica age.
+A simple vista un análisis visual nos indica que la edad, de manera aislada no es un factor determinante para predecir la aceptación del depósito a plazo fijo en la campaña. La similitud es casi igual en medianas, rangos y dispersión entre los clientes que si aceptaron y los que no aceptaron. Sin embargo, sería necesario considerar otras variables en conjunto con la edad, en lugar de usarla como un criterio principal.
 
-[^longnote]: $p$ is unknown but expected to be around 1/3. Standard error will be approximated
+```{r}
+data %>%
+  ggplot(aes(x = y, y = balance)) +
+  geom_boxplot(fill = "#1E90FF", alpha = 0.6, color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  labs(
+    title = "Distribución del balance según la respuesta del cliente",
+    x = "¿Aceptó el depósito a plazo fijo? (y)",
+    y = "Balance del cliente (€)"
+  ) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
-    $$
-    SE = \sqrt{\frac{p(1-p)}{n}} \approx \sqrt{\frac{1/3 (1 - 1/3)} {300}} = 0.027
-    $$
+La mediana y la media que se ve como el punto rojo son similares tanto para los clientes que aceptaron como los que no. Sin embargo, hay muchos valores atípicos en los dos grupos lo que nos puede indicar que la distribución está sesgada.
+Como conclusión, el balance no parece tampoco ser conciso a la hora de determinar la aceptación o rechazo de la oferta ya que los valores atípicos indican que hay presencia de clientes con perfiles financieros distintos.
+
+```{r}
+data %>%
+  ggplot(aes(x = y, y = duration)) +
+  geom_boxplot(fill = "#FFD700", alpha = 0.6, color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  labs(
+    title = "Distribución de la duración de llamada según la respuesta del cliente",
+    x = "¿Aceptó el depósito a plazo fijo? (y)",
+    y = "Duración de la última llamada (segundos)"
+  ) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+En esta variable se nota una diferencia entre la aceptación y el rechazo, ya que la duración de la llamada es marcada mayormente en los clientes que aceptaron. Mientras que en el grupo que no aceptó la mayoría de las llamadas fueron cortas.
+
+La duración de la llamada parece ser un predictor fuerte de aceptación. Como interpretación se puede decir que las llamadas mas largas tienden a asociarse con una mayor probabilidad de éxito, posiblemente ya que al haber mayor tiempo, hay mas tiempo de persuasión. 
+
+```{r}
+data %>%
+  ggplot(aes(x = y, y = campaign)) +
+  geom_boxplot(fill = "#32CD32", alpha = 0.6, color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  labs(
+    title = "Distribución de número de contactos en la campaña actual según la respuesta del cliente",
+    x = "¿Aceptó el depósito a plazo fijo? (y)",
+    y = "Número de contactos en la campaña actual"
+  ) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+data %>%
+  ggplot(aes(x = y, y = pdays)) +
+  geom_boxplot(fill = "#FF69B4", alpha = 0.6, color = "black") +
+  stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
+  labs(
+    title = "Distribución de días desde el último contacto según la respuesta del cliente",
+    x = "¿Aceptó el depósito a plazo fijo? (y)",
+    y = "Días desde el último contacto"
+  ) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+
+
+
