@@ -85,6 +85,9 @@ data %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+La mediana del número de contactos en la campaña es muy baja en ambos grupos, con unos valores atípicos que llegan hasta 50 contactos, sin embargo, el grupo de aceptación tiende a tener un número menor de contactos.
+Para concluir se nota que una cantidad alta de intentos de contacto no necesariamente mejora la tasa de éxito e incluso podría llegar a ser contraproducente y los clientes que si aceptaron requerían en promedio menos intentos.
+
 ```{r}
 data %>%
   ggplot(aes(x = y, y = pdays)) +
@@ -99,7 +102,10 @@ data %>%
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+Al analizar el grafico se muestra que el tiempo desde el último contacto influye fuertemente en la probabilidad de éxito de la campaña.
 
+Los clientes que aceptaron tendieron a ser contactados más recientemente en comparación con los que la rechazaron. 
+Esta diferencia indica que el tiempo transcurrido desde el último contacto influye directamente en la probabilidad de éxito de la campaña. Aunque algunos clientes pueden mantener interés incluso después de largos períodos sin contacto, la estrategia más efectiva parece ser enfocarse en contactos más frecuentes.
 
 
 
