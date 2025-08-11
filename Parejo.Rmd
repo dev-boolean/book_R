@@ -17,5 +17,10 @@ knitr::kable(
   booktabs = TRUE
 )
 ```
+```{r}
+data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
 
+head(data,n=5)
+
+```
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].

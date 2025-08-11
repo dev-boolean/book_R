@@ -361,6 +361,21 @@ Figure 2.1: Here is a nice figure!
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intro.html#cb3-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;bank.csv&quot;</span>,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="intro.html#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="intro.html#cb3-3" tabindex="-1"></a><span class="fu">head</span>(data,<span class="at">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##   age         job marital education default balance housing loan  contact day
+## 1  30  unemployed married   primary      no    1787      no   no cellular  19
+## 2  33    services married secondary      no    4789     yes  yes cellular  11
+## 3  35  management  single  tertiary      no    1350     yes   no cellular  16
+## 4  30  management married  tertiary      no    1476     yes  yes  unknown   3
+## 5  59 blue-collar married secondary      no       0     yes   no  unknown   5
+##   month duration campaign pdays previous poutcome  y
+## 1   oct       79        1    -1        0  unknown no
+## 2   may      220        1   339        4  failure no
+## 3   apr      185        1   330        1  failure no
+## 4   jun      199        4    -1        0  unknown no
+## 5   may      226        1    -1        0  unknown no</code></pre>
 <p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(<a href="#ref-R-bookdown">Xie 2025</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(<a href="#ref-xie2015">Xie 2015</a>)</span>.</p>
 
 </div>
