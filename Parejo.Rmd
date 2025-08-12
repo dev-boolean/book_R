@@ -1,26 +1,57 @@
-# Introduction {#intro}
-
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
-
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
-
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
+```{r}
+library(tidyverse)
+data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
+head(data)
 ```
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
 
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
+
+```{r}
+data %>%
+  group_by(y) %>%
+  count(marital, name = "n") %>%
+  mutate(categoria = marital,
+    variable = "marital",
+    porcentaje = (n / sum(n)) * 100) %>%
+  select(y, variable, categoria, n, porcentaje)
+
 ```
 ```{r}
-data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
-
-head(data,n=5)
-
+data %>%
+  group_by(y, job) %>%
+  count(name = "n") %>%
+  mutate(porcentaje = (n / sum(n)) * 100)
 ```
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+
+```{r}
+# Education
+df %>%
+  group_by(y) %>%
+  count(education, name = "n") %>%
+  mutate(categoria = education,
+         variable = "education",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+```
+
+```{r}
+# Housing
+df %>%
+  group_by(y) %>%
+  count(housing, name = "n") %>%
+  mutate(categoria = housing,
+         variable = "housing",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+```
+
+```{r}
+# Loan
+df %>%
+  group_by(y) %>%
+  count(loan, name = "n") %>%
+  mutate(categoria = loan,
+         variable = "loan",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+```
