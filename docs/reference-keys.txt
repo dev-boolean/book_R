@@ -11,3 +11,4 @@ diagrama-de-boxplot-para-duration
 diagrama-de-boxplot-para-campaign
 diagrama-de-boxplot-para-pdays
 interpretacion-tabla
+comienzo-del-eda

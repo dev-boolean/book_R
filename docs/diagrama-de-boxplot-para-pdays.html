@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo</title>
+  <title>Chapter 5 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo" />
+  <meta property="og:title" content="Chapter 5 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo" />
+  <meta name="twitter:title" content="Chapter 5 Diagrama de boxplot para pdays | Juan Marin, Santiago Hurtado, Andres Parejo" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -165,11 +165,10 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="interpretacion-tabla.html"><a href="interpretacion-tabla.html"><i class="fa fa-check"></i><b>3</b> Interpretacion tabla</a></li>
-<li class="chapter" data-level="4" data-path="diagrama-de-boxplot-para-duration.html"><a href="diagrama-de-boxplot-para-duration.html"><i class="fa fa-check"></i><b>4</b> Diagrama de boxplot para duration</a></li>
-<li class="chapter" data-level="5" data-path="diagrama-de-boxplot-para-campaign.html"><a href="diagrama-de-boxplot-para-campaign.html"><i class="fa fa-check"></i><b>5</b> Diagrama de boxplot para campaign</a></li>
-<li class="chapter" data-level="6" data-path="diagrama-de-boxplot-para-pdays.html"><a href="diagrama-de-boxplot-para-pdays.html"><i class="fa fa-check"></i><b>6</b> Diagrama de boxplot para pdays</a></li>
-<li class="chapter" data-level="7" data-path="Marin.html"><a href="#an%C3%A1lisis-exploratorio-bivariado."><i class="fa fa-check"></i><b>7</b> Análisis exploratorio bivariado.</a></li>
+<li class="chapter" data-level="3" data-path="comienzo-del-eda.html"><a href="comienzo-del-eda.html"><i class="fa fa-check"></i><b>3</b> #Comienzo del EDA</a></li>
+<li class="chapter" data-level="4" data-path="diagrama-de-boxplot-para-campaign.html"><a href="diagrama-de-boxplot-para-campaign.html"><i class="fa fa-check"></i><b>4</b> Diagrama de boxplot para campaign</a></li>
+<li class="chapter" data-level="5" data-path="diagrama-de-boxplot-para-pdays.html"><a href="diagrama-de-boxplot-para-pdays.html"><i class="fa fa-check"></i><b>5</b> Diagrama de boxplot para pdays</a></li>
+<li class="chapter" data-level="6" data-path="Marin.html"><a href="#an%C3%A1lisis-exploratorio-bivariado."><i class="fa fa-check"></i><b>6</b> Análisis exploratorio bivariado.</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -190,8 +189,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="diagrama-de-boxplot-para-pdays" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Diagrama de boxplot para pdays<a href="diagrama-de-boxplot-para-pdays.html#diagrama-de-boxplot-para-pdays" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="diagrama-de-boxplot-para-pdays" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Diagrama de boxplot para pdays<a href="diagrama-de-boxplot-para-pdays.html#diagrama-de-boxplot-para-pdays" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="diagrama-de-boxplot-para-pdays.html#cb29-1" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="diagrama-de-boxplot-para-pdays.html#cb29-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> pdays)) <span class="sc">+</span></span>
 <span id="cb29-3"><a href="diagrama-de-boxplot-para-pdays.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9467bd&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
@@ -330,7 +329,8 @@ Viendo la variable (marital), la mayoria de los clientes registrados (61,87%) so
 <span id="cb32-19"><a href="diagrama-de-boxplot-para-pdays.html#cb32-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb32-20"><a href="diagrama-de-boxplot-para-pdays.html#cb32-20" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-10-1.png" width="672" />
-#Interpretacion</p>
+<strong>Interpretacion:</strong>
+La grafica de la variable (default) nos muestra como el 98,3% de los clientes del banco encuestados en la muestra no estan incumpliendo con el pago de un credito, en comparacion con el 1,7% de aquellas que si estan incumpliendo. Esta gran diferencia permite conocer una muestra de personas que se encuentran al dia con sus compromisos financieros, y que aquellas personas que tienen faltas son muy pocas.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="diagrama-de-boxplot-para-pdays.html#cb33-1" tabindex="-1"></a>grafico_job <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb33-2"><a href="diagrama-de-boxplot-para-pdays.html#cb33-2" tabindex="-1"></a>  <span class="fu">count</span>(job, <span class="at">name =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb33-3"><a href="diagrama-de-boxplot-para-pdays.html#cb33-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Porcentaje =</span> <span class="fu">round</span>(Frecuencia <span class="sc">/</span> <span class="fu">sum</span>(Frecuencia) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
