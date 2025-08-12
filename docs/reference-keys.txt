@@ -6,3 +6,8 @@ literature
 methods
 math-example
 análisis-exploratorio-bivariado.
+boxplot-de-age
+diagrama-de-boxplot-para-duration
+diagrama-de-boxplot-para-campaign
+diagrama-de-boxplot-para-pdays
+interpretacion-tabla

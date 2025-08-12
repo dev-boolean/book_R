@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Juan Marin, Santiago Hurtado, Andres Parejo</title>
+  <title>Chapter 3 Boxplot de age | Juan Marin, Santiago Hurtado, Andres Parejo</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Juan Marin, Santiago Hurtado, Andres Parejo" />
+  <meta property="og:title" content="Chapter 3 Boxplot de age | Juan Marin, Santiago Hurtado, Andres Parejo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Juan Marin, Santiago Hurtado, Andres Parejo" />
+  <meta name="twitter:title" content="Chapter 3 Boxplot de age | Juan Marin, Santiago Hurtado, Andres Parejo" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="diagrama-de-boxplot-para-duration.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -165,11 +165,11 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="interpretacion-tabla.html"><a href="interpretacion-tabla.html"><i class="fa fa-check"></i><b>3</b> Interpretacion tabla</a></li>
+<li class="chapter" data-level="3" data-path="boxplot-de-age.html"><a href="boxplot-de-age.html"><i class="fa fa-check"></i><b>3</b> Boxplot de age</a></li>
 <li class="chapter" data-level="4" data-path="diagrama-de-boxplot-para-duration.html"><a href="diagrama-de-boxplot-para-duration.html"><i class="fa fa-check"></i><b>4</b> Diagrama de boxplot para duration</a></li>
 <li class="chapter" data-level="5" data-path="diagrama-de-boxplot-para-campaign.html"><a href="diagrama-de-boxplot-para-campaign.html"><i class="fa fa-check"></i><b>5</b> Diagrama de boxplot para campaign</a></li>
 <li class="chapter" data-level="6" data-path="diagrama-de-boxplot-para-pdays.html"><a href="diagrama-de-boxplot-para-pdays.html"><i class="fa fa-check"></i><b>6</b> Diagrama de boxplot para pdays</a></li>
-<li class="chapter" data-level="7" data-path=""><a href="#an%C3%A1lisis-exploratorio-bivariado."><i class="fa fa-check"></i><b>7</b> Análisis exploratorio bivariado.</a></li>
+<li class="chapter" data-level="7" data-path="Marin.html"><a href="#an%C3%A1lisis-exploratorio-bivariado."><i class="fa fa-check"></i><b>7</b> Análisis exploratorio bivariado.</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -190,19 +190,41 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="boxplot-de-age" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Boxplot de age<a href="boxplot-de-age.html#boxplot-de-age" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>df %&gt;%
+ggplot(aes(x = ““, y = age)) +
+geom_boxplot(fill =”#1f77b4”, alpha = 0.7) +
+stat_summary(fun = mean, geom = “point”, shape = 18, size = 4, color = “black”) +
+labs(
+title = “Distribución de la edad”,
+y = “Años”,
+x = “”
+) +
+theme_bw()
+#Interpretacion
+El boxplot muestra que la mayoría de las edades se concentran entre 32 y 48 años, con una mediana cercana a 38 y un promedio ligeramente mayor, lo que indica una ligera asimetría hacia edades más altas. El rango total (sin contar atípicos) va de unos 22 a 72 años, y se observan varios outliers entre 72 y 90 años, lo que sugiere que, aunque la distribución es relativamente compacta, existen casos aislados de personas considerablemente mayores.
+# Boxplot de balance
+df %&gt;%
+ggplot(aes(x = ““, y = balance)) +
+geom_boxplot(fill =”#2f43b1”, alpha = 0.7) +
+stat_summary(fun = mean, geom = “point”, shape = 18, size = 4, color = “black”) +
+labs(
+title = “Distribución del balance de la cuenta”,
+y = “Usd”,
+x = “”
+) +
+theme_bw()
+#Interpretacion
+La distribución del balance de la cuenta muestra una fuerte asimetría positiva, con la mayoría de los saldos concentrados cerca de valores bajos y un gran número de valores atípicos que alcanzan hasta 71,188 USD. El balance promedio es de 1,422.66 USD (Desviacion = 3,009.64), mientras que la mediana es de solo 444 USD, lo que refleja que pocos clientes con saldos muy altos elevan el promedio. Además, se observan saldos negativos mínimos de -3,313 USD, lo que indica sobregiros o deudas, y un rango intercuartílico que va de 69 a 1,480 USD, confirmando que la mayoría de los clientes mantiene balances reducidos.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diagrama-de-boxplot-para-duration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +255,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/Marin.Rmd",
     "text": "Edit"
   },
   "history": {
