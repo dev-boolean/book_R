@@ -14,7 +14,6 @@ library(ggplot2)
 - A continuación vamos a comparar la variable y respecto a las variables numéricas independientes.
 
 ```{r}
-# Diagrama boxplot: y vs age
 data %>%
   ggplot(aes(x = y, y = age)) +
   geom_boxplot(fill = "green", alpha = 0.6, color = "black") +
@@ -30,7 +29,6 @@ data %>%
     strip.background = element_rect(fill = "gray90", color = NA),
     strip.text = element_text(face = "bold")
   )
-
 ```
 
 El grafico muestra la relación entre la variable y ("yes" o "no") y la variable numérica age.
@@ -107,5 +105,81 @@ Al analizar el grafico se muestra que el tiempo desde el último contacto influy
 Los clientes que aceptaron tendieron a ser contactados más recientemente en comparación con los que la rechazaron. 
 Esta diferencia indica que el tiempo transcurrido desde el último contacto influye directamente en la probabilidad de éxito de la campaña. Aunque algunos clientes pueden mantener interés incluso después de largos períodos sin contacto, la estrategia más efectiva parece ser enfocarse en contactos más frecuentes.
 
+- Comparacion de las variables numéricas independientes con respecto a la variable y (en tablas).
 
+```{r}
+age_y <- data %>%
+  group_by(y) %>%
+  summarise(n = length(age),
+            media = mean(age),
+            ds = sd(age),
+            mediana = median(age),
+            minimo = min(age),
+            maximo = max(age),
+            Q1 = quantile(age, 0.25),
+            Q3 = quantile(age, 0.75),
+            IQR = IQR(age)) %>%
+  mutate(variable = "age", niveles = as.character(y)) %>%
+  select(variable, niveles, everything(), -y)
 
+balance_y <- data %>%
+  group_by(y) %>%
+  summarise(n = length(balance),
+            media = mean(balance),
+            ds = sd(balance),
+            mediana = median(balance),
+            minimo = min(balance),
+            maximo = max(balance),
+            Q1 = quantile(balance, 0.25),
+            Q3 = quantile(balance, 0.75),
+            IQR = IQR(balance)) %>%
+  mutate(variable = "balance", niveles = as.character(y)) %>%
+  select(variable, niveles, everything(), -y)
+
+duration_y <- data %>%
+  group_by(y) %>%
+  summarise(n = length(duration),
+            media = mean(duration),
+            ds = sd(duration),
+            mediana = median(duration),
+            minimo = min(duration),
+            maximo = max(duration),
+            Q1 = quantile(duration, 0.25),
+            Q3 = quantile(duration, 0.75),
+            IQR = IQR(duration)) %>%
+  mutate(variable = "duration", niveles = as.character(y)) %>%
+  select(variable, niveles, everything(), -y)
+
+campaign_y <- data %>%
+  group_by(y) %>%
+  summarise(n = length(campaign),
+            media = mean(campaign),
+            ds = sd(campaign),
+            mediana = median(campaign),
+            minimo = min(campaign),
+            maximo = max(campaign),
+            Q1 = quantile(campaign, 0.25),
+            Q3 = quantile(campaign, 0.75),
+            IQR = IQR(campaign)) %>%
+  mutate(variable = "campaign", niveles = as.character(y)) %>%
+  select(variable, niveles, everything(), -y)
+
+pdays_y <- data %>%
+  group_by(y) %>%
+  summarise(n = length(pdays),
+            media = mean(pdays),
+            ds = sd(pdays),
+            mediana = median(pdays),
+            minimo = min(pdays),
+            maximo = max(pdays),
+            Q1 = quantile(pdays, 0.25),
+            Q3 = quantile(pdays, 0.75),
+            IQR = IQR(pdays)) %>%
+  mutate(variable = "pdays", niveles = as.character(y)) %>%
+  select(variable, niveles, everything(), -y)
+
+bind_rows(age_y,balance_y,duration_y,campaign_y,pdays_y)
+```
+
+En general, los clientes que aceptan el deposito a plazo tienden a ser ligeramente mayores, tener un saldo promedio algo mas alto y sobre todo participar en llamadas mas largas. Además, suelen requerir menos intentos de contacto y se nota que con más frecuencia tiene interacción previa con la entidad.
+Como puntos claves se destaca que la duración de la llamada es la variable que más diferencia los grupos ya que al ser más largas se asocia con mayor probabilidad de aceptación. Por otra parte, al haber menor insistencia en la campaña y un contacto previo parecen estar relacionados con un mayor éxito y por último en algunas variables se presentan una alta dispersión por lo que más adelante conviene realizar unos modelos predictivos para confirmar la fuerza de estas relaciones.
