@@ -1,3 +1,101 @@
-# Literature
+datos <- read.csv("bank.csv",sep=";")
+head(datos, n=5)
+dim(datos)
+colnames(datos)
+str(datos)
 
-Here is a review of existing methods.
+library(tidyverse)
+ datos %>% 
+  select(-day, -month, -previous) -> df
+  head(df, n=5)
+  df %>% 
+  summarise(across(everything(),~ sum(is.na(.)), .names = "NA_{.col}"))
+  tabla_y <- df %>% 
+  count(y, name = "Frecuencia") %>% 
+    mutate(Porcentaje = round(Frecuencia/sum(Frecuencia)*100,1),
+    Etiqueta = paste0(Frecuencia, " (", Porcentaje, "%)"))
+  tabla_y %>% 
+  ggplot(aes(x = factor(y), y = Frecuencia)) +
+  geom_col(fill = "purple", width = 0.6) +
+  geom_text(aes(label = Etiqueta), vjust = -0.5, size = 3) +
+  facet_grid(~ "Distribucion interes de deposito a plazo fijo (no/yes)") + 
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(x = "Interes por el deposito a plazo fijo", y = "Numero de clientes (Porcentaje)") +
+  #coord_flip() +
+  theme_bw(base_size = 14) +
+  theme(
+    plot.title = element_blank(),
+    strip.background = element_rect(fill = "gray80", color = NA),
+    strip.text = element_text(face = "bold"),
+    panel.grid.major.y = element_blank(),
+    axis.text.y = element_text(size = 8)  
+  )  
+#falta interpretacion de la tabla de la variable objetivo
+df %>% 
+  summarise(
+    n = length(age),
+    media = mean(age),
+    desviacion = sd(age),
+    mediana = median(age),
+    minimo = min(age),
+    maximo = max(age),
+    Q1 = quantile(age, 0.25),
+    Q3 = quantile(age, 0.75),
+    IQR = IQR(age)) %>%
+  mutate(variable = "age") -> variable_age
+
+df %>% 
+  summarise(
+    n = length(balance),
+    media = mean(balance),
+    desviacion = sd(balance),
+    mediana = median(balance),
+    minimo = min(balance),
+    maximo = max(balance),
+    Q1 = quantile(balance, 0.25),
+    Q3 = quantile(balance, 0.75),
+    IQR = IQR(balance)) %>% 
+  mutate(variable = "balance") -> variable_balance
+
+df %>% 
+  summarise(
+    n = length(duration),
+    media = mean(duration),
+    desviacion = sd(duration),
+    mediana = median(duration),
+    minimo = min(duration),
+    maximo = max(duration),
+    Q1 = quantile(duration, 0.25),
+    Q3 = quantile(duration, 0.75),
+    IQR = IQR(duration)) %>% 
+  mutate(variable = "duration")-> variable_duration
+
+df %>% 
+  summarise(
+    n = length(campaign),
+    media = mean(campaign),
+    desviacion = sd(campaign),
+    mediana = median(campaign),
+    minimo = min(campaign),
+    maximo = max(campaign),
+    Q1 = quantile(campaign, 0.25),
+    Q3 = quantile(campaign, 0.75),
+    IQR = IQR(campaign)) %>% 
+  mutate(variable = "campaign")-> variable_campaign
+
+df %>% 
+  summarise(
+    n = length(pdays),
+    media = mean(pdays),
+    desviacion = sd(pdays),
+    mediana = median(pdays),
+    minimo = min(pdays),
+    maximo = max(pdays),
+    Q1 = quantile(pdays, 0.25),
+    Q3 = quantile(pdays, 0.75),
+    IQR = IQR(pdays)) %>% 
+  mutate(variable = "pdays")-> variable_pdays
+
+bind_rows(variable_age, variable_balance, variable_duration,variable_campaign,variable_pdays) %>%
+  select(variable, everything())
+
