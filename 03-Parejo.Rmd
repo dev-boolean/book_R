@@ -10,7 +10,7 @@ library(tidyverse)
 data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
 head(data)
 ```
-
+- **Tabla de comparación de y con marital.**
 ```{r}
 data %>%
   group_by(y) %>%
@@ -20,14 +20,14 @@ data %>%
     porcentaje = (n / sum(n)) * 100) %>%
   select(y, variable, categoria, n, porcentaje)
 ```
-
+- **Tabla de comparación de y con job.**
 ```{r}
 data %>%
   group_by(y, job) %>%
   count(name = "n") %>%
   mutate(porcentaje = (n / sum(n)) * 100)
 ```
-
+- **Tabla de comparación de y con education.**
 ```{r}
 # Education
 data %>%
@@ -38,7 +38,7 @@ data %>%
          porcentaje = (n / sum(n)) * 100) %>%
   select(y, categoria, n, porcentaje)
 ```
-
+- **Tabla de comparación de y con housing.**
 ```{r}
 # Housing
 data %>%
@@ -49,7 +49,7 @@ data %>%
          porcentaje = (n / sum(n)) * 100) %>%
   select(y, categoria, n, porcentaje)
 ```
-
+- **Tabla de comparación de y con loan.**
 ```{r}
 # Loan
 data %>%
@@ -61,7 +61,7 @@ data %>%
   select(y, categoria, n, porcentaje)
 ```
 
-#default vs y
+
 ```{r}
 data_plot <- data %>%
   group_by(y) %>%
