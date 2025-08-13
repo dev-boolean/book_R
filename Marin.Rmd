@@ -391,6 +391,7 @@ grafico_education %>%
   )
 ```
 **Interpretacion:**
+El gráfico muestra que la mayoría de las personas encuestadas tienen educación secundaria, representando el 51% (2306 individuos) del total. Le sigue la educación terciaria con un 29.9% (1350 personas), mientras que un 15% (678 personas) alcanzó solo la primaria. Un grupo reducido, el 4.1% (187 personas), no tiene registrado su nivel educativo. Esto indica que el nivel secundario es el más común, mientras que la educación primaria y la falta de información son minoritarias.
 
 ```{r}
 grafico_housing <- df %>%
@@ -415,6 +416,7 @@ grafico_housing %>%
   )
 ```
 **Interpretacion:**
+El gráfico indica que la mayoría de las personas encuestadas, un 56.6% (2559 individuos), posee un crédito hipotecario, mientras que el 43.4% restante (1962 personas) no lo tiene. Esto refleja que más de la mitad de la población analizada mantiene compromisos financieros asociados a la adquisición de vivienda.
 
 ```{r}
 grafico_loan <- df %>%
@@ -439,6 +441,7 @@ grafico_loan %>%
   )
 ```
 **Interpretacion:**
+El gráfico muestra que la gran mayoría de los encuestados, un 84.7% (3830 personas), no tiene un crédito personal, mientras que solo el 15.3% (691 personas) sí cuenta con este tipo de préstamo. Esto evidencia que el uso de créditos personales es considerablemente menor en comparación con quienes no los poseen.
 
 ```{r}
 grafico_contact <- df %>%
@@ -463,6 +466,7 @@ grafico_contact %>%
   )
 ```
 **Interpretacion:**
+El gráfico revela que el medio de comunicación más utilizado es el teléfono celular, con un 64.1% (2896 casos), seguido por un 29.3% (1324 casos) donde el tipo de contacto es desconocido. En contraste, solo el 6.7% (301 casos) utiliza el teléfono fijo. Esto indica una clara preferencia por el celular como canal de comunicación, mientras que el uso del teléfono fijo es muy reducido.
 
 ```{r}
 grafico_poutcome <- df %>%
@@ -487,3 +491,4 @@ grafico_poutcome %>%
   )
 ```
 **Interpretacion:**
+El gráfico muestra que en el 82% de los casos (3705 registros) se desconoce el resultado de la campaña anterior, mientras que un 10.8% (490 casos) terminó en fracaso y solo un 2.9% (129 casos) fue exitoso. El 4.4% restante (197 casos) se clasifica como “otro”. Esto evidencia una gran carencia de información sobre campañas previas y una baja tasa de éxito entre los casos conocidos.
