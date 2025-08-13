@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-13"><a href="análisis-exploratorio-bivariado.html#cb1-13" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
 <span id="cb1-14"><a href="análisis-exploratorio-bivariado.html#cb1-14" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb1-15"><a href="análisis-exploratorio-bivariado.html#cb1-15" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="figs-hurtado/unnamed-chunk-2-1.png" width="672" /></p>
 <p>El grafico muestra la relación entre la variable y (“yes” o “no”) y la variable numérica age.
 A simple vista un análisis visual nos indica que la edad, de manera aislada no es un factor determinante para predecir la aceptación del depósito a plazo fijo en la campaña. La similitud es casi igual en medianas, rangos y dispersión entre los clientes que si aceptaron y los que no aceptaron. Sin embargo, sería necesario considerar otras variables en conjunto con la edad, en lugar de usarla como un criterio principal.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-exploratorio-bivariado.html#cb2-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
@@ -199,7 +199,7 @@ A simple vista un análisis visual nos indica que la edad, de manera aislada no 
 <span id="cb2-9"><a href="análisis-exploratorio-bivariado.html#cb2-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb2-10"><a href="análisis-exploratorio-bivariado.html#cb2-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb2-11"><a href="análisis-exploratorio-bivariado.html#cb2-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="figs-hurtado/unnamed-chunk-3-1.png" width="672" /></p>
 <p>La mediana y la media que se ve como el punto rojo son similares tanto para los clientes que aceptaron como los que no. Sin embargo, hay muchos valores atípicos en los dos grupos lo que nos puede indicar que la distribución está sesgada.
 Como conclusión, el balance no parece tampoco ser conciso a la hora de determinar la aceptación o rechazo de la oferta ya que los valores atípicos indican que hay presencia de clientes con perfiles financieros distintos.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="análisis-exploratorio-bivariado.html#cb3-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
@@ -213,7 +213,7 @@ Como conclusión, el balance no parece tampoco ser conciso a la hora de determin
 <span id="cb3-9"><a href="análisis-exploratorio-bivariado.html#cb3-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb3-10"><a href="análisis-exploratorio-bivariado.html#cb3-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb3-11"><a href="análisis-exploratorio-bivariado.html#cb3-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="figs-hurtado/unnamed-chunk-4-1.png" width="672" /></p>
 <p>En esta variable se nota una diferencia entre la aceptación y el rechazo, ya que la duración de la llamada es marcada mayormente en los clientes que aceptaron. Mientras que en el grupo que no aceptó la mayoría de las llamadas fueron cortas.</p>
 <p>La duración de la llamada parece ser un predictor fuerte de aceptación. Como interpretación se puede decir que las llamadas mas largas tienden a asociarse con una mayor probabilidad de éxito, posiblemente ya que al haber mayor tiempo, hay mas tiempo de persuasión.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="análisis-exploratorio-bivariado.html#cb4-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
@@ -227,7 +227,7 @@ Como conclusión, el balance no parece tampoco ser conciso a la hora de determin
 <span id="cb4-9"><a href="análisis-exploratorio-bivariado.html#cb4-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb4-10"><a href="análisis-exploratorio-bivariado.html#cb4-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb4-11"><a href="análisis-exploratorio-bivariado.html#cb4-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="figs-hurtado/unnamed-chunk-5-1.png" width="672" /></p>
 <p>La mediana del número de contactos en la campaña es muy baja en ambos grupos, con unos valores atípicos que llegan hasta 50 contactos, sin embargo, el grupo de aceptación tiende a tener un número menor de contactos.
 Para concluir se nota que una cantidad alta de intentos de contacto no necesariamente mejora la tasa de éxito e incluso podría llegar a ser contraproducente y los clientes que si aceptaron requerían en promedio menos intentos.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="análisis-exploratorio-bivariado.html#cb5-1" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
@@ -241,7 +241,7 @@ Para concluir se nota que una cantidad alta de intentos de contacto no necesaria
 <span id="cb5-9"><a href="análisis-exploratorio-bivariado.html#cb5-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb5-10"><a href="análisis-exploratorio-bivariado.html#cb5-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb5-11"><a href="análisis-exploratorio-bivariado.html#cb5-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="figs-hurtado/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Al analizar el grafico se muestra que el tiempo desde el último contacto influye fuertemente en la probabilidad de éxito de la campaña.</p>
 <p>Los clientes que aceptaron tendieron a ser contactados más recientemente en comparación con los que la rechazaron.
 Esta diferencia indica que el tiempo transcurrido desde el último contacto influye directamente en la probabilidad de éxito de la campaña. Aunque algunos clientes pueden mantener interés incluso después de largos períodos sin contacto, la estrategia más efectiva parece ser enfocarse en contactos más frecuentes.</p>

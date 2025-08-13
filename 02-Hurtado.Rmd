@@ -3,6 +3,7 @@
 ```{r hurtado-setup, include=FALSE}
 # Configuración específica para este capítulo
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.path = 'figs-hurtado/')
 ```
 
 ```{r, include=FALSE}

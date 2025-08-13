@@ -281,7 +281,7 @@ La finalidad detras de este estudio es predecir si un cliente aceptara o no la o
 <span id="cb15-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb15-18" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb15-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb15-19" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)  </span>
 <span id="cb15-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb15-20" tabindex="-1"></a>  ) </span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-1-1.png" width="672" />
 <strong>Analisis de la tabla y el grafico de barras de la variable “y” (objetivo)</strong>
 En ambas representaciones visuales, se evidencia que existe una gran mayoria de los clientes, los cuales no estan interesados en hacer parte de la oferta de deposito a plazo fijo con un total de 4000 usuarios (88.55% de la muestra), asi mismo pues, la gran minoria de los encuestados dijo que si a dicha oferta siendo estos el 11.5% de las personas (521 en total). Estos marcadores indican el desbalance que se presenta en la variable objetivo, y que es de sumo cuidado tener en cuenta este desequilibrio para llevar a cabo los modelos predictivos.</p>
 <p><strong>Tabla de las variables numericas independientes</strong></p>
@@ -379,7 +379,7 @@ Por medio de un analisis estadistico, se evidencia un promedio de edad en los cl
 <span id="cb21-9"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb21-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb21-10"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb21-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb21-11"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb21-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-3-1.png" width="672" />
 <strong>Interpretacion</strong>
 El boxplot muestra que la mayoría de las edades se concentran entre 32 y 48 años, con una mediana cercana a 38 y un promedio ligeramente mayor, lo que indica una ligera asimetría hacia edades más altas. El rango total (sin contar atípicos) va de unos 22 a 72 años, y se observan varios outliers entre 72 y 90 años, lo que sugiere que, aunque la distribución es relativamente compacta, existen casos aislados de personas considerablemente mayores.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb22-1" tabindex="-1"></a><span class="co"># Boxplot de balance</span></span>
@@ -393,7 +393,7 @@ El boxplot muestra que la mayoría de las edades se concentran entre 32 y 48 añ
 <span id="cb22-9"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb22-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb22-10"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb22-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb22-11"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb22-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-4-1.png" width="672" />
 <strong>Interpretacion</strong>
 La distribución del balance de la cuenta muestra una fuerte asimetría positiva, con la mayoría de los saldos concentrados cerca de valores bajos y un gran número de valores atípicos que alcanzan hasta 71,188 USD. El balance promedio es de 1,422.66 USD (Desviacion = 3,009.64), mientras que la mediana es de solo 444 USD, lo que refleja que pocos clientes con saldos muy altos elevan el promedio. Además, se observan saldos negativos mínimos de -3,313 USD, lo que indica sobregiros o deudas, y un rango intercuartílico que va de 69 a 1,480 USD, confirmando que la mayoría de los clientes mantiene balances reducidos.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb23-1" tabindex="-1"></a><span class="co">#Diagrama de boxplot para duration</span></span>
@@ -407,7 +407,7 @@ La distribución del balance de la cuenta muestra una fuerte asimetría positiva
 <span id="cb23-9"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb23-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb23-10"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb23-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb23-11"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb23-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-5-1.png" width="672" />
 <strong>Interpretacion</strong>
 La duración de las llamadas presenta una media de aproximadamente 264 segundos (Desviacion = 260), con una mediana de 185 segundos, lo que indica que la mayoría de las llamadas fueron relativamente cortas. El rango intercuartílico va de 104 a 329 segundos, reflejando que el 50 % central de las llamadas dura entre poco menos de 2 y alrededor de 5,5 minutos. Sin embargo, el boxplot revela una marcada asimetría positiva debido a la presencia de múltiples valores atípicos que alcanzan hasta 3025 segundos (más de 50 minutos), lo que sugiere que, aunque la mayoría de las interacciones fueron breves, existen casos puntuales de llamadas excepcionalmente largas.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb24-1" tabindex="-1"></a><span class="co">#Diagrama de boxplot para campaign</span></span>
@@ -421,7 +421,7 @@ La duración de las llamadas presenta una media de aproximadamente 264 segundos 
 <span id="cb24-9"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb24-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb24-10"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb24-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb24-11"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb24-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-6-1.png" width="672" />
 <strong>Interpretacion</strong>
 La variable (campaign) muestra una distribución sesgada positivamente, con la mayoría de los clientes contactados pocas veces (mediana de 2 y Q3 en 3), pero con algunos casos extremos que llegan hasta 50 contactos, lo que eleva la media (2.79) por encima de la mediana. El diagrama de caja confirma la presencia de numerosos valores atípicos por encima del rango intercuartílico, reflejando que la mayor parte de los datos se concentra en valores bajos mientras unos pocos casos muy altos alargan la cola derecha.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb25-1" tabindex="-1"></a><span class="co"># Diagrama de boxplot para pdays</span></span>
@@ -435,7 +435,7 @@ La variable (campaign) muestra una distribución sesgada positivamente, con la m
 <span id="cb25-9"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb25-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span></span>
 <span id="cb25-10"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb25-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb25-11"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb25-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-7-1.png" width="672" />
 <strong>Interpretacion</strong>
 El boxplot de (pdays) muestra una distribución fuertemente sesgada positivamente, donde la mayoría de los clientes tienen valores cercanos a cero días desde el último contacto, concentrándose en el primer cuartil, mientras que existen numerosos valores atípicos muy alejados (hasta más de 800 días) que generan una cola derecha larga. Esto indica que, aunque la mediana es baja, un pequeño grupo de clientes fue contactado después de intervalos de tiempo extremadamente largos, lo que eleva la media y refleja una gran dispersión en la variable.</p>
 <p><strong>Ahora procedemos a analizar las variables categoricas:</strong></p>
@@ -562,7 +562,7 @@ Viendo la variable (marital), la mayoria de los clientes registrados (61,87%) so
 <span id="cb28-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb28-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb28-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb28-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb28-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb28-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-9-1.png" width="672" />
 <strong>Interpretacion:</strong>
 La grafica de la variable (default) nos muestra como el 98,3% de los clientes del banco encuestados en la muestra no estan incumpliendo con el pago de un credito, en comparacion con el 1,7% de aquellas que si estan incumpliendo. Esta gran diferencia permite conocer una muestra de personas que se encuentran al dia con sus compromisos financieros, y que aquellas personas que tienen faltas son muy pocas.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb29-1" tabindex="-1"></a>grafico_job <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -585,7 +585,7 @@ La grafica de la variable (default) nos muestra como el 98,3% de los clientes de
 <span id="cb29-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb29-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb29-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb29-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb29-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb29-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-10-1.png" width="672" />
 <strong>Interpretacion:</strong>
 Respecto a las ocupaciones de los participantes, se destaca que los grupos más representativos son quienes se desempeñan en áreas de gestión (21.43%), trabajos operativos o manuales (20.92%) y funciones técnicas (16.99%), concentrando cerca del 60% del total. En cambio, los estudiantes (1.86%), empleados domésticos (2.48%) y aquellos cuya ocupación no fue especificada (0.84%) tienen una presencia marginal. Esto revela que la muestra está compuesta mayoritariamente por personas activas en el mercado laboral formal, con roles administrativos, técnicos y operativos. Además, se incluyen otros perfiles como 168 emprendedores (3.72%), 478 administradores (10.57%), 230 jubilados (5.09%), 183 trabajadores independientes (4.05%), 417 empleados en atención al público (9.22%) y 128 personas desempleadas (2.83%), lo que aporta mayor diversidad al panorama ocupacional.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb30-1" tabindex="-1"></a>grafico_marital <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -608,7 +608,7 @@ Respecto a las ocupaciones de los participantes, se destaca que los grupos más 
 <span id="cb30-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb30-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb30-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb30-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb30-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb30-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-11-1.png" width="672" />
 <strong>Interpretacion:</strong>
 La variable (marital) muestra que la mayoría de los clientes registrados son casados (61.87%), seguidos por 1,196 solteros (26.45%), mientras que el 11.68% restante corresponde a personas divorciadas; lo que sugiere una base de datos principalmente formada por personas con nexos conyugales.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb31-1" tabindex="-1"></a>grafico_education <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -631,7 +631,7 @@ La variable (marital) muestra que la mayoría de los clientes registrados son ca
 <span id="cb31-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb31-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb31-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb31-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb31-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb31-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-12-1.png" width="672" />
 <strong>Interpretacion:</strong>
 El gráfico muestra que la mayoría de las personas encuestadas tienen educación secundaria, representando el 51% (2306 individuos) del total. Le sigue la educación terciaria con un 29.9% (1350 personas), mientras que un 15% (678 personas) alcanzó solo la primaria. Un grupo reducido, el 4.1% (187 personas), no tiene registrado su nivel educativo. Esto indica que el nivel secundario es el más común, mientras que la educación primaria y la falta de información son minoritarias.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb32-1" tabindex="-1"></a>grafico_housing <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -654,7 +654,7 @@ El gráfico muestra que la mayoría de las personas encuestadas tienen educació
 <span id="cb32-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb32-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb32-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb32-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb32-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb32-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-13-1.png" width="672" />
 <strong>Interpretacion:</strong>
 El gráfico indica que la mayoría de las personas encuestadas, un 56.6% (2559 individuos), posee un crédito hipotecario, mientras que el 43.4% restante (1962 personas) no lo tiene. Esto refleja que más de la mitad de la población analizada mantiene compromisos financieros asociados a la adquisición de vivienda.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb33-1" tabindex="-1"></a>grafico_loan <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -677,7 +677,7 @@ El gráfico indica que la mayoría de las personas encuestadas, un 56.6% (2559 i
 <span id="cb33-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb33-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb33-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb33-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb33-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb33-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-14-1.png" width="672" />
 <strong>Interpretacion:</strong>
 El gráfico muestra que la gran mayoría de los encuestados, un 84.7% (3830 personas), no tiene un crédito personal, mientras que solo el 15.3% (691 personas) sí cuenta con este tipo de préstamo. Esto evidencia que el uso de créditos personales es considerablemente menor en comparación con quienes no los poseen.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb34-1" tabindex="-1"></a>grafico_contact <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -700,7 +700,7 @@ El gráfico muestra que la gran mayoría de los encuestados, un 84.7% (3830 pers
 <span id="cb34-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb34-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb34-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb34-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb34-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb34-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-15-1.png" width="672" />
 <strong>Interpretacion:</strong>
 El gráfico revela que el medio de comunicación más utilizado es el teléfono celular, con un 64.1% (2896 casos), seguido por un 29.3% (1324 casos) donde el tipo de contacto es desconocido. En contraste, solo el 6.7% (301 casos) utiliza el teléfono fijo. Esto indica una clara preferencia por el celular como canal de comunicación, mientras que el uso del teléfono fijo es muy reducido.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb35-1" tabindex="-1"></a>grafico_poutcome <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
@@ -723,7 +723,7 @@ El gráfico revela que el medio de comunicación más utilizado es el teléfono 
 <span id="cb35-18"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb35-18" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb35-19"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb35-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb35-20"><a href="analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes.html#cb35-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="mi-libro_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<p><img src="figs-marin/unnamed-chunk-16-1.png" width="672" />
 <strong>Interpretacion:</strong>
 El gráfico muestra que en el 82% de los casos (3705 registros) se desconoce el resultado de la campaña anterior, mientras que un 10.8% (490 casos) terminó en fracaso y solo un 2.9% (129 casos) fue exitoso. El 4.4% restante (197 casos) se clasifica como “otro”. Esto evidencia una gran carencia de información sobre campañas previas y una baja tasa de éxito entre los casos conocidos.</p>
 

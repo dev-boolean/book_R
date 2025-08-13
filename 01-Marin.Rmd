@@ -3,6 +3,7 @@
 ```{r marin-setup, include=FALSE}
 # Configuración específica para este capítulo
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.path = 'figs-marin/')
 ```
 
 **Contexto del conjunto de datos y la situacion sobre la que se va a trabajar**

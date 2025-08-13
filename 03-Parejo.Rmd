@@ -3,6 +3,7 @@
 ```{r parejo-setup, include=FALSE}
 # Configuración específica para este capítulo
 knitr::opts_chunk$set(echo = TRUE, fig.width = 8, fig.height = 6)
+knitr::opts_chunk$set(fig.path = 'figs-parejo/')
 ```
 
 ```{r, include=FALSE}
