@@ -1,0 +1,3 @@
+# Referencias
+
+Moro, S., Cortez, P., y Rita, P. 2012. *Bank Marketing Dataset*. UCI Machine Learning Repository. https://archive.ics.uci.edu/dataset/222/bank+marketing.
