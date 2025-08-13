@@ -25,7 +25,7 @@ data %>%
 
 ```{r}
 # Education
-df %>%
+data %>%
   group_by(y) %>%
   count(education, name = "n") %>%
   mutate(categoria = education,
@@ -36,7 +36,7 @@ df %>%
 
 ```{r}
 # Housing
-df %>%
+data %>%
   group_by(y) %>%
   count(housing, name = "n") %>%
   mutate(categoria = housing,
@@ -47,11 +47,210 @@ df %>%
 
 ```{r}
 # Loan
-df %>%
+data %>%
   group_by(y) %>%
   count(loan, name = "n") %>%
   mutate(categoria = loan,
          variable = "loan",
          porcentaje = (n / sum(n)) * 100) %>%
   select(y, categoria, n, porcentaje)
+```
+
+#default vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(default, name = "n") %>%
+  mutate(categoria = default,
+    variable = "default",
+    porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+# Gráfica de barras agrupadas con etiquetas
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9),
+            vjust = -0.3,
+            size = 3) +
+  labs(title = "Historial de impago (default)",
+       x = "Historial de impago (default)",
+       y = "Cantidad de clientes"
+  ) +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#E74C3C", "yes" = "#3498DB"))
+```
+
+#job vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(job, name = "n") %>%
+  mutate(categoria = job,
+         variable = "job",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>%
+  mutate(categoria = reorder(categoria, -n, sum)) %>%  # ordenar por frecuencia total
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9),
+            vjust = -0.3,
+            size = 3) +
+  labs(title = "Distribución por ocupación (job)",
+       x = "Ocupación",
+       y = "Cantidad de clientes") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # rotar etiquetas
+  scale_fill_manual(values = c("no" = "#F39C12", "yes" = "#9B59B6"))
+```
+
+#marital vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(marital, name = "n") %>%
+  mutate(categoria = marital,
+         variable = "marital",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Estado civil (marital)",
+       x = "Estado civil", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#1ABC9C", "yes" = "#E67E22"))
+```
+
+#education vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(education, name = "n") %>%
+  mutate(categoria = education,
+         variable = "education",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Nivel educativo (education)",
+       x = "Educación", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#2ECC71", "yes" = "#8E44AD"))
+```
+
+#housing vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(housing, name = "n") %>%
+  mutate(categoria = housing,
+         variable = "housing",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Préstamo de vivienda (housing)",
+       x = "Housing", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#34495E", "yes" = "#F1C40F"))
+```
+
+#loan vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(loan, name = "n") %>%
+  mutate(categoria = loan,
+         variable = "loan",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Préstamo personal (loan)",
+       x = "Loan", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#16A085", "yes" = "#D35400"))
+```
+
+#contact vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(contact, name = "n") %>%
+  mutate(categoria = contact,
+         variable = "contact",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Tipo de contacto (contact)",
+       x = "Tipo de contacto", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#7F8C8D", "yes" = "#C0392B"))
+```
+
+#month vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(month, name = "n") %>%
+  mutate(categoria = month,
+         variable = "month",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Mes de contacto (month)",
+       x = "Mes", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#A569BD", "yes" = "#28B463"))
+```
+
+#poutcome vs y
+```{r}
+data_plot <- data %>%
+  group_by(y) %>%
+  count(poutcome, name = "n") %>%
+  mutate(categoria = poutcome,
+         variable = "poutcome",
+         porcentaje = (n / sum(n)) * 100) %>%
+  select(y, categoria, n, porcentaje)
+
+data_plot %>% 
+  ggplot(aes(x = categoria, y = n, fill = y)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
+            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
+  labs(title = "Resultado de campaña previa (poutcome)",
+       x = "Poutcome", y = "Cantidad de clientes") +
+  theme_bw() +
+  scale_fill_manual(values = c("no" = "#EC7063", "yes" = "#5DADE2"))
 ```
