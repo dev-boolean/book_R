@@ -1,13 +1,13 @@
-book_filename: "bookdown-demo"
+book_filename: "mi-libro"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Capitulo "
 delete_merged_file: true
 output_dir: "docs"
-
 rmd_files: [
   "index.Rmd",
-  "Parejo.Rmd",
-  "Marin.Rmd",
-  "Hurtado.Rmd"
+  "01-Marin.Rmd",
+  "02-Hurtado.Rmd",
+  "03-Parejo.Rmd",
+  "04-Referencias.Rmd"
 ]
