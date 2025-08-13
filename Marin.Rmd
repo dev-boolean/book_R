@@ -287,6 +287,7 @@ tabla_poutcome <- df %>%
 #Todas las tablas
 bind_rows(tabla_job, tabla_marital, tabla_education,tabla_default,
           tabla_housing, tabla_loan,tabla_contact, tabla_poutcome)
+
 ```
 **Interpretacion general**
 Viendo la variable (marital), la mayoria de los clientes registrados (61,87%) son de estado civil casados, seguidos de 1196 que se declaran solteros (26,45%) y el resto son divorciados (11,68%). En cuanto a la educacion, la mayoria de estos usuarios ha cursado hasta niveles de secundaria con 2306 personas(51,01%), seguidos de personas que han tenido niveles de educacion terciaria como universidades, institutos tecnicos, maestrias, postgrados, etc; con un porcentaje de 29,86% lo que es equivalente a 1350 individuos, luego se ubican las personas con una educacion primaria como maximo, siendo 678 personas, las cuales representan un 15% de la muestra y por ultimo estan aquellos que no registran algun tipo de nivel de educacion. La variable (default) muestra si los clientes presentan credito en incumplimiento, a lo que la gran mayoria dice que no, 4445 personas (98,32%) niegan tener un credito sin cumplir, y solo 76 personas afirman estar incumpliendo con dicho credito, por otra parte, el 56,6% de los usuarios dijo que si despues de preguntarles si tenian un credito hipotecario, el otro 43,4% expuso que no tenian credito hipotecario; tambien se dio a conocer que la mayoria no tiene creditos personales, fueron 3830 personas las que negaron tener este tipo de credito, representando un 84,72% de la muestra; el otro 15,28% (691 usuarios) dijeron que si. Ademas, se recogio informacion acerca del metodo utilizado para contactarlos, donde mayoritariamente (64,06%) dijeron que se habian comunicado con ellos via celular, luego con casi el 30% estan las personas que desconocen el tipo de comunicacion que usaron, y con el porcentaje mas bajo (6,66%) se pueden observar las personas que tuvieron contacto con el banco por medio de un telefono fijo. En los resultados de campañas anteriores (poutcome), 3705 usuarios manifestaron desconocer el resultado de campañas anteriores, siendo estos la gran mayoria con un 81,95%, seguidos del 10,84% que señalan a las campañas previas como un absoluto fracaso, luego se ubican con un 4,36% (197 personas) aquellos que tienen otra percepcion frente a estas campañas, y por ultimo, vemos a la gran minoria que establece que las campañas fueron un rotundo exito (129 personas que representan el 2,85%). En cuanto a las ocupaciones de los usuarios, se observa que las más comunes son "management" (21.43%), "blue-collar" (20.92%) y "technician" (16.99%), lo que indica que estos tres grupos representan casi el 60% de la muestra total. En contraste, las personas con ocupaciones que se desconocen (0.84%), estudiantes (1.86%) y empleados domesticos (2.48%) tienen una representación mucho menor. Esto sugiere una muestra compuesta principalmente por trabajadores con cargos administrativos, técnicos y operativos, lo cual podría reflejar el perfil laboral de una muestra económicamente activa en sectores formales. Entre otros trabajos consignados en la informacion, podemos observar 168 emprendedores (3,72%), 478 administradores (10,57%), 230 personas retiradas (5,09%), 183 trabajadores autonomos (4,05%), 417 que se ocupan de servicios que involucran atencion directa al publico (9,22%) y 128 desempleados (2,83%).
@@ -339,8 +340,8 @@ grafico_job %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
-
+**Interpretacion:**
+Respecto a las ocupaciones de los participantes, se destaca que los grupos más representativos son quienes se desempeñan en áreas de gestión (21.43%), trabajos operativos o manuales (20.92%) y funciones técnicas (16.99%), concentrando cerca del 60% del total. En cambio, los estudiantes (1.86%), empleados domésticos (2.48%) y aquellos cuya ocupación no fue especificada (0.84%) tienen una presencia marginal. Esto revela que la muestra está compuesta mayoritariamente por personas activas en el mercado laboral formal, con roles administrativos, técnicos y operativos. Además, se incluyen otros perfiles como 168 emprendedores (3.72%), 478 administradores (10.57%), 230 jubilados (5.09%), 183 trabajadores independientes (4.05%), 417 empleados en atención al público (9.22%) y 128 personas desempleadas (2.83%), lo que aporta mayor diversidad al panorama ocupacional.
 ```{r}
 grafico_marital <- df %>%
   count(marital, name = "Frecuencia") %>%
@@ -363,8 +364,8 @@ grafico_marital %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
-
+**Interpretacion:**
+La variable (marital) muestra que la mayoría de los clientes registrados son casados (61.87%), seguidos por 1,196 solteros (26.45%), mientras que el 11.68% restante corresponde a personas divorciadas; lo que sugiere una base de datos principalmente formada por personas con nexos conyugales.
 ```{r}
 grafico_education <- df %>%
   count(education, name = "Frecuencia") %>%
@@ -387,7 +388,7 @@ grafico_education %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
+**Interpretacion:**
 
 ```{r}
 grafico_housing <- df %>%
@@ -411,7 +412,7 @@ grafico_housing %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
+**Interpretacion:**
 
 ```{r}
 grafico_loan <- df %>%
@@ -435,7 +436,7 @@ grafico_loan %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
+**Interpretacion:**
 
 ```{r}
 grafico_contact <- df %>%
@@ -459,7 +460,7 @@ grafico_contact %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
+**Interpretacion:**
 
 ```{r}
 grafico_poutcome <- df %>%
@@ -483,4 +484,4 @@ grafico_poutcome %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion**
+**Interpretacion:**
