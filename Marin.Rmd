@@ -1,3 +1,5 @@
+#Analisis de la variable objetivo, numericas y categoricas indepentiendes
+
 **Contexto del conjunto de datos y la situacion sobre la que se va a trabajar**
 
 A continuacion se presentan datos asociados a campañas de marketing realizadas por un banco en Portugal. La finalidad de dichas campañas era impulsar la contratacion de depositos a plazo fijo por parte de los clientes afiliados al banco. Los datos abarcan informacion socioeconomica del cliente como detalles a la hora de la interaccion telefonica con el sujeto.

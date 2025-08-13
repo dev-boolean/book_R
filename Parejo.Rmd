@@ -1,3 +1,5 @@
+#Bivariado con variables categoricas
+
 ```{r}
 library(tidyverse)
 data <- read.csv("bank.csv",sep=";",stringsAsFactors = TRUE)
