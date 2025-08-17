@@ -240,30 +240,6 @@ data_plot %>%
 **Interpretación Contact vs Y:**
 El análisis del tipo de contacto revela la efectividad de los diferentes canales de comunicación. Entre quienes respondieron afirmativamente (`yes`), el contacto cellular (móvil) representa la gran mayoría, mientras que telephone y unknown tienen participaciones menores. En el grupo de respuesta negativa (`no`), también domina el contacto cellular, pero con proporciones ligeramente diferentes. El contacto por teléfono móvil muestra ser el canal más efectivo, posiblemente porque permite mayor accesibilidad y conveniencia para los clientes. Esto sugiere que las estrategias de marketing deberían priorizar el contacto móvil para optimizar las tasas de conversión.
 
-#month vs y
-```{r}
-data_plot <- data %>%
-  group_by(y) %>%
-  count(month, name = "n") %>%
-  mutate(categoria = month,
-         variable = "month",
-         porcentaje = (n / sum(n)) * 100) %>%
-  select(y, categoria, n, porcentaje)
-
-data_plot %>% 
-  ggplot(aes(x = categoria, y = n, fill = y)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
-            position = position_dodge(width = 0.9), vjust = -0.3, size = 3) +
-  labs(title = "Mes de contacto (month)",
-       x = "Mes", y = "Cantidad de clientes") +
-  theme_bw() +
-  scale_fill_manual(values = c("no" = "#A569BD", "yes" = "#28B463"))
-```
-
-**Interpretación Month vs Y:**
-La distribución temporal muestra marcadas diferencias estacionales en la efectividad de las campañas. Entre quienes respondieron afirmativamente (`yes`), ciertos meses como may, jul, aug, y oct muestran mayor efectividad, mientras que otros como nov, jun, y feb presentan menores tasas de respuesta positiva. En el grupo de respuesta negativa (`no`), may y jul también dominan, pero con diferentes proporciones. Los meses de primavera y principios de verano parecen ser óptimos para las campañas, posiblemente coincidiendo con ciclos de ingresos, bonificaciones, o momentos de mayor disposición financiera de los clientes.
-
 #poutcome vs y
 ```{r}
 data_plot <- data %>%
