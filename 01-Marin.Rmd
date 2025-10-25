@@ -32,6 +32,10 @@ La finalidad detras de este estudio es predecir si un cliente aceptara o no la o
 
 **Comienzo del EDA**
 
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
 ```{r}
 datos <- read.csv("bank.csv",sep=";")
 head(datos, n=5)
@@ -39,7 +43,6 @@ dim(datos)
 colnames(datos)
 str(datos)
 
-library(tidyverse)
  datos %>% 
   select(-day, -month, -previous) -> df
   head(df, n=5)
@@ -66,7 +69,9 @@ library(tidyverse)
     axis.text.y = element_text(size = 8)  
   ) 
 ```
-**Analisis de la tabla y el grafico de barras de la variable "y" (objetivo)**
+
+**Analisis de la tabla y el grafico de barras de la variable "y" (objetivo):**
+
 En ambas representaciones visuales, se evidencia que existe una gran mayoria de los clientes, los cuales no estan interesados en hacer parte de la oferta de deposito a plazo fijo con un total de 4000 usuarios (88.55% de la muestra), asi mismo pues, la gran minoria de los encuestados dijo que si a dicha oferta siendo estos el 11.5% de las personas (521 en total). Estos marcadores indican el desbalance que se presenta en la variable objetivo, y que es de sumo cuidado tener en cuenta este desequilibrio para llevar a cabo los modelos predictivos.
 
 **Tabla de las variables numericas independientes**
@@ -139,8 +144,8 @@ df %>%
 bind_rows(variable_age, variable_balance, variable_duration,variable_campaign,variable_pdays) %>%
   select(variable, everything())
 ```
-**Interpretacion tabla**
-Por medio de un analisis estadistico, se evidencia un promedio de edad en los clientes del banco portugues de 41 años, con un rango que arranca desde los 19 años hasta los 87 como el dato maximo registrado, lo que muestra una poblacion adulta diversificada. El saldo promedio anual en las cuentas bancarias muestra una media de 1422 USD y una alta desviacion (Desviacion = 3009); además de unos valores extremos que abarcan saldos en numeros negativos como saldos bastante elevados (Maximo = 71188). Por otro lado, la duracion de las llamadas evidencia una media muestral de 264 segundos aproximadamente, y una desviacion considerable de 259 segundos; la mediana, es decir, el 50% de los datos es menor o igual a 185 segundos, y la duracion de estas llamadas esta comprendida en un intervalo que va desde los 4 segundos hasta los 3025, lo que simboliza una alta dispersion en los datos, y que por tanto puede derivar en sesgos.En relación con el número de contactos durante la campaña (campaign), se registra un promedio de 2,79 contactos (Desviacion = 3,11), con el 50 % de los casos por debajo de 2. Aunque se presentan valores extremos de hasta 50 contactos, la mayoría de los clientes fue contactada pocas veces, tal como refleja el rango intercuartílico comprendido entre los percentiles P25 y P75 (lo mismo que decir Q1 y Q3). A su vez, la variable pdays, que representa los días transcurridos desde el último contacto en campañas anteriores, muestra una media de 39,77 días (Desviacion = 100,12 días). Sin embargo, tanto la mediana como los percentiles P25 y P75 se encuentran en −1, lo que indica que la mayoría de los clientes no había sido contactada previamente. Aun así, existen registros que superan los 800 días, lo que evidencia comportamientos heterogéneos y la posible existencia de distintos segmentos dentro de la base de clientes.
+
+En la tabla anterior por medio de un analisis estadistico, se evidencia un promedio de edad en los clientes del banco portugues de 41 años, con un rango que arranca desde los 19 años hasta los 87 como el dato maximo registrado, lo que muestra una poblacion adulta diversificada. El saldo promedio anual en las cuentas bancarias muestra una media de 1422 USD y una alta desviacion (Desviacion = 3009); además de unos valores extremos que abarcan saldos en numeros negativos como saldos bastante elevados (Maximo = 71188). Por otro lado, la duracion de las llamadas evidencia una media muestral de 264 segundos aproximadamente, y una desviacion considerable de 259 segundos; la mediana, es decir, el 50% de los datos es menor o igual a 185 segundos, y la duracion de estas llamadas esta comprendida en un intervalo que va desde los 4 segundos hasta los 3025, lo que simboliza una alta dispersion en los datos, y que por tanto puede derivar en sesgos.En relación con el número de contactos durante la campaña (campaign), se registra un promedio de 2,79 contactos (Desviacion = 3,11), con el 50 % de los casos por debajo de 2. Aunque se presentan valores extremos de hasta 50 contactos, la mayoría de los clientes fue contactada pocas veces, tal como refleja el rango intercuartílico comprendido entre los percentiles P25 y P75 (lo mismo que decir Q1 y Q3). A su vez, la variable pdays, que representa los días transcurridos desde el último contacto en campañas anteriores, muestra una media de 39,77 días (Desviacion = 100,12 días). Sin embargo, tanto la mediana como los percentiles P25 y P75 se encuentran en −1, lo que indica que la mayoría de los clientes no había sido contactada previamente. Aun así, existen registros que superan los 800 días, lo que evidencia comportamientos heterogéneos y la posible existencia de distintos segmentos dentro de la base de clientes.
 
 **Graficos boxplot (caja y bigotes) de las variables numericas**
 ```{r}
@@ -159,8 +164,11 @@ df %>%
   ) +
   theme_bw()
 ```
-**Interpretacion**
-El boxplot muestra que la mayoría de las edades se concentran entre 32 y 48 años, con una mediana cercana a 38 y un promedio ligeramente mayor, lo que indica una ligera asimetría hacia edades más altas. El rango total (sin contar atípicos) va de unos 22 a 72 años, y se observan varios outliers entre 72 y 90 años, lo que sugiere que, aunque la distribución es relativamente compacta, existen casos aislados de personas considerablemente mayores.
+
+El boxplot muestra que la mayoría de las edades se concentran entre 32 y 48 años, donde se ubica el 50% de los individuos.
+La edad promedio es de 39 años (± 10 años), lo que refleja una ligera dispersión hacia edades más altas.
+El rango total de edades va aproximadamente de 22 a 72 años, y se observan algunos casos atípicos entre los 72 y 90 años, lo que sugiere la presencia de personas considerablemente mayores en comparación con la mayoría.
+
 ```{r}
 # Boxplot de balance
 df %>%
@@ -174,7 +182,7 @@ df %>%
   ) +
   theme_bw()
 ```
-**Interpretacion**
+
 La distribución del balance de la cuenta muestra una fuerte asimetría positiva, con la mayoría de los saldos concentrados cerca de valores bajos y un gran número de valores atípicos que alcanzan hasta 71,188 USD. El balance promedio es de 1,422.66 USD (Desviacion = 3,009.64), mientras que la mediana es de solo 444 USD, lo que refleja que pocos clientes con saldos muy altos elevan el promedio. Además, se observan saldos negativos mínimos de -3,313 USD, lo que indica sobregiros o deudas, y un rango intercuartílico que va de 69 a 1,480 USD, confirmando que la mayoría de los clientes mantiene balances reducidos.
 
 ```{r}
@@ -190,7 +198,7 @@ df %>%
   ) +
   theme_bw()
 ```
-**Interpretacion**
+
 La duración de las llamadas presenta una media de aproximadamente 264 segundos (Desviacion = 260), con una mediana de 185 segundos, lo que indica que la mayoría de las llamadas fueron relativamente cortas. El rango intercuartílico va de 104 a 329 segundos, reflejando que el 50 % central de las llamadas dura entre poco menos de 2 y alrededor de 5,5 minutos. Sin embargo, el boxplot revela una marcada asimetría positiva debido a la presencia de múltiples valores atípicos que alcanzan hasta 3025 segundos (más de 50 minutos), lo que sugiere que, aunque la mayoría de las interacciones fueron breves, existen casos puntuales de llamadas excepcionalmente largas.
 
 ```{r}
@@ -206,7 +214,7 @@ df %>%
   ) +
   theme_bw()
 ```
-**Interpretacion**
+
 La variable (campaign) muestra una distribución sesgada positivamente, con la mayoría de los clientes contactados pocas veces (mediana de 2 y Q3 en 3), pero con algunos casos extremos que llegan hasta 50 contactos, lo que eleva la media (2.79) por encima de la mediana. El diagrama de caja confirma la presencia de numerosos valores atípicos por encima del rango intercuartílico, reflejando que la mayor parte de los datos se concentra en valores bajos mientras unos pocos casos muy altos alargan la cola derecha.
 
 ```{r}
@@ -222,7 +230,7 @@ df %>%
   ) +
   theme_bw()
 ```
-**Interpretacion**
+
 El boxplot de (pdays) muestra una distribución fuertemente sesgada positivamente, donde la mayoría de los clientes tienen valores cercanos a cero días desde el último contacto, concentrándose en el primer cuartil, mientras que existen numerosos valores atípicos muy alejados (hasta más de 800 días) que generan una cola derecha larga. Esto indica que, aunque la mediana es baja, un pequeño grupo de clientes fue contactado después de intervalos de tiempo extremadamente largos, lo que eleva la media y refleja una gran dispersión en la variable.
 
 **Ahora procedemos a analizar las variables categoricas:**
@@ -297,7 +305,7 @@ bind_rows(tabla_job, tabla_marital, tabla_education,tabla_default,
           tabla_housing, tabla_loan,tabla_contact, tabla_poutcome)
 
 ```
-**Interpretacion general**
+
 Viendo la variable (marital), la mayoria de los clientes registrados (61,87%) son de estado civil casados, seguidos de 1196 que se declaran solteros (26,45%) y el resto son divorciados (11,68%). En cuanto a la educacion, la mayoria de estos usuarios ha cursado hasta niveles de secundaria con 2306 personas(51,01%), seguidos de personas que han tenido niveles de educacion terciaria como universidades, institutos tecnicos, maestrias, postgrados, etc; con un porcentaje de 29,86% lo que es equivalente a 1350 individuos, luego se ubican las personas con una educacion primaria como maximo, siendo 678 personas, las cuales representan un 15% de la muestra y por ultimo estan aquellos que no registran algun tipo de nivel de educacion. La variable (default) muestra si los clientes presentan credito en incumplimiento, a lo que la gran mayoria dice que no, 4445 personas (98,32%) niegan tener un credito sin cumplir, y solo 76 personas afirman estar incumpliendo con dicho credito, por otra parte, el 56,6% de los usuarios dijo que si despues de preguntarles si tenian un credito hipotecario, el otro 43,4% expuso que no tenian credito hipotecario; tambien se dio a conocer que la mayoria no tiene creditos personales, fueron 3830 personas las que negaron tener este tipo de credito, representando un 84,72% de la muestra; el otro 15,28% (691 usuarios) dijeron que si. Ademas, se recogio informacion acerca del metodo utilizado para contactarlos, donde mayoritariamente (64,06%) dijeron que se habian comunicado con ellos via celular, luego con casi el 30% estan las personas que desconocen el tipo de comunicacion que usaron, y con el porcentaje mas bajo (6,66%) se pueden observar las personas que tuvieron contacto con el banco por medio de un telefono fijo. En los resultados de campañas anteriores (poutcome), 3705 usuarios manifestaron desconocer el resultado de campañas anteriores, siendo estos la gran mayoria con un 81,95%, seguidos del 10,84% que señalan a las campañas previas como un absoluto fracaso, luego se ubican con un 4,36% (197 personas) aquellos que tienen otra percepcion frente a estas campañas, y por ultimo, vemos a la gran minoria que establece que las campañas fueron un rotundo exito (129 personas que representan el 2,85%). En cuanto a las ocupaciones de los usuarios, se observa que las más comunes son "management" (21.43%), "blue-collar" (20.92%) y "technician" (16.99%), lo que indica que estos tres grupos representan casi el 60% de la muestra total. En contraste, las personas con ocupaciones que se desconocen (0.84%), estudiantes (1.86%) y empleados domesticos (2.48%) tienen una representación mucho menor. Esto sugiere una muestra compuesta principalmente por trabajadores con cargos administrativos, técnicos y operativos, lo cual podría reflejar el perfil laboral de una muestra económicamente activa en sectores formales. Entre otros trabajos consignados en la informacion, podemos observar 168 emprendedores (3,72%), 478 administradores (10,57%), 230 personas retiradas (5,09%), 183 trabajadores autonomos (4,05%), 417 que se ocupan de servicios que involucran atencion directa al publico (9,22%) y 128 desempleados (2,83%).
 
 **Graficos de barras para cada variable categorica**
@@ -323,33 +331,50 @@ grafico_default %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 La grafica de la variable (default) nos muestra como el 98,3% de los clientes del banco encuestados en la muestra no estan incumpliendo con el pago de un credito, en comparacion con el 1,7% de aquellas que si estan incumpliendo. Esta gran diferencia permite conocer una muestra de personas que se encuentran al dia con sus compromisos financieros, y que aquellas personas que tienen faltas son muy pocas.
 
 ```{r}
 grafico_job <- df %>%
   count(job, name = "Frecuencia") %>%
-  mutate(Porcentaje = round(Frecuencia / sum(Frecuencia) * 100, 1),
-         Etiqueta = paste0(Frecuencia, " (", Porcentaje, "%)"))
+  mutate(
+    Porcentaje = round(Frecuencia / sum(Frecuencia) * 100, 1),
+    Etiqueta = paste0(Frecuencia, " (", Porcentaje, "%)")
+  )
 
-grafico_job %>% 
-  ggplot(aes(x = job, y = Frecuencia)) +
+grafico_job %>%
+  ggplot(aes(x = reorder(job, -Frecuencia), y = Frecuencia)) +
   geom_col(fill = "#008B8B", width = 0.6) +
-  geom_text(aes(label = Etiqueta), vjust = -0.5, size = 5) +
+  geom_text(
+    aes(label = Etiqueta),
+    vjust = -0.8,           
+    size = 3.5,             
+    fontface = "bold"
+  ) +
   facet_wrap(~ "Distribución de la variable job") +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
-  labs(x = "Ocupacion", 
-       y = "Frecuencia (Porcentaje)") +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.20))) + 
+  labs(
+    x = "Ocupación",
+    y = "Frecuencia (Porcentaje)"
+  ) +
   theme_bw(base_size = 14) +
   theme(
     plot.title = element_blank(),
     strip.background = element_rect(fill = "gray80", color = NA),
     strip.text = element_text(face = "bold"),
-    panel.grid.major.x = element_blank()
+    panel.grid.major.x = element_blank(),
+    axis.text.x = element_text(
+      angle = 45,
+      hjust = 1,
+      size = 10
+    ),
+    axis.text.y = element_text(size = 10),
+    plot.margin = margin(10, 10, 30, 10)
   )
 ```
-**Interpretacion:**
+
 Respecto a las ocupaciones de los participantes, se destaca que los grupos más representativos son quienes se desempeñan en áreas de gestión (21.43%), trabajos operativos o manuales (20.92%) y funciones técnicas (16.99%), concentrando cerca del 60% del total. En cambio, los estudiantes (1.86%), empleados domésticos (2.48%) y aquellos cuya ocupación no fue especificada (0.84%) tienen una presencia marginal. Esto revela que la muestra está compuesta mayoritariamente por personas activas en el mercado laboral formal, con roles administrativos, técnicos y operativos. Además, se incluyen otros perfiles como 168 emprendedores (3.72%), 478 administradores (10.57%), 230 jubilados (5.09%), 183 trabajadores independientes (4.05%), 417 empleados en atención al público (9.22%) y 128 personas desempleadas (2.83%), lo que aporta mayor diversidad al panorama ocupacional.
+
 ```{r}
 grafico_marital <- df %>%
   count(marital, name = "Frecuencia") %>%
@@ -372,8 +397,9 @@ grafico_marital %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 La variable (marital) muestra que la mayoría de los clientes registrados son casados (61.87%), seguidos por 1,196 solteros (26.45%), mientras que el 11.68% restante corresponde a personas divorciadas; lo que sugiere una base de datos principalmente formada por personas con nexos conyugales.
+
 ```{r}
 grafico_education <- df %>%
   count(education, name = "Frecuencia") %>%
@@ -396,7 +422,7 @@ grafico_education %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 El gráfico muestra que la mayoría de las personas encuestadas tienen educación secundaria, representando el 51% (2306 individuos) del total. Le sigue la educación terciaria con un 29.9% (1350 personas), mientras que un 15% (678 personas) alcanzó solo la primaria. Un grupo reducido, el 4.1% (187 personas), no tiene registrado su nivel educativo. Esto indica que el nivel secundario es el más común, mientras que la educación primaria y la falta de información son minoritarias.
 
 ```{r}
@@ -421,7 +447,7 @@ grafico_housing %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 El gráfico indica que la mayoría de las personas encuestadas, un 56.6% (2559 individuos), posee un crédito hipotecario, mientras que el 43.4% restante (1962 personas) no lo tiene. Esto refleja que más de la mitad de la población analizada mantiene compromisos financieros asociados a la adquisición de vivienda.
 
 ```{r}
@@ -446,7 +472,7 @@ grafico_loan %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 El gráfico muestra que la gran mayoría de los encuestados, un 84.7% (3830 personas), no tiene un crédito personal, mientras que solo el 15.3% (691 personas) sí cuenta con este tipo de préstamo. Esto evidencia que el uso de créditos personales es considerablemente menor en comparación con quienes no los poseen.
 
 ```{r}
@@ -471,7 +497,7 @@ grafico_contact %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 El gráfico revela que el medio de comunicación más utilizado es el teléfono celular, con un 64.1% (2896 casos), seguido por un 29.3% (1324 casos) donde el tipo de contacto es desconocido. En contraste, solo el 6.7% (301 casos) utiliza el teléfono fijo. Esto indica una clara preferencia por el celular como canal de comunicación, mientras que el uso del teléfono fijo es muy reducido.
 
 ```{r}
@@ -496,5 +522,5 @@ grafico_poutcome %>%
     panel.grid.major.x = element_blank()
   )
 ```
-**Interpretacion:**
+
 El gráfico muestra que en el 82% de los casos (3705 registros) se desconoce el resultado de la campaña anterior, mientras que un 10.8% (490 casos) terminó en fracaso y solo un 2.9% (129 casos) fue exitoso. El 4.4% restante (197 casos) se clasifica como “otro”. Esto evidencia una gran carencia de información sobre campañas previas y una baja tasa de éxito entre los casos conocidos.

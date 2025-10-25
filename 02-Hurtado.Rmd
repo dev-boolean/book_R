@@ -22,7 +22,7 @@ library(ggplot2)
 ```{r}
 data %>%
   ggplot(aes(x = y, y = age)) +
-  geom_boxplot(fill = "green", alpha = 0.6, color = "black") +
+  geom_boxplot(fill = "lightblue", alpha = 0.6, color = "black") +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
   labs(
     title = "Distribución de la edad según la respuesta del cliente",
@@ -43,7 +43,7 @@ A simple vista un análisis visual nos indica que la edad, de manera aislada no 
 ```{r}
 data %>%
   ggplot(aes(x = y, y = balance)) +
-  geom_boxplot(fill = "#1E90FF", alpha = 0.6, color = "black") +
+  geom_boxplot(fill = "lightblue", alpha = 0.6, color = "black") +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
   labs(
     title = "Distribución del balance según la respuesta del cliente",
@@ -60,7 +60,7 @@ Como conclusión, el balance no parece tampoco ser conciso a la hora de determin
 ```{r}
 data %>%
   ggplot(aes(x = y, y = duration)) +
-  geom_boxplot(fill = "#FFD700", alpha = 0.6, color = "black") +
+  geom_boxplot(fill = "lightblue", alpha = 0.6, color = "black") +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
   labs(
     title = "Distribución de la duración de llamada según la respuesta del cliente",
@@ -78,7 +78,7 @@ La duración de la llamada parece ser un predictor fuerte de aceptación. Como i
 ```{r}
 data %>%
   ggplot(aes(x = y, y = campaign)) +
-  geom_boxplot(fill = "#32CD32", alpha = 0.6, color = "black") +
+  geom_boxplot(fill = "lightblue", alpha = 0.6, color = "black") +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
   labs(
     title = "Distribución de número de contactos en la campaña actual según la respuesta del cliente",
@@ -95,7 +95,7 @@ Para concluir se nota que una cantidad alta de intentos de contacto no necesaria
 ```{r}
 data %>%
   ggplot(aes(x = y, y = pdays)) +
-  geom_boxplot(fill = "#FF69B4", alpha = 0.6, color = "black") +
+  geom_boxplot(fill = "lightblue", alpha = 0.6, color = "black") +
   stat_summary(fun = mean, geom = "point", shape = 20, size = 3, color = "red") +
   labs(
     title = "Distribución de días desde el último contacto según la respuesta del cliente",

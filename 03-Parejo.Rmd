@@ -85,7 +85,7 @@ data_plot %>%
        y = "Cantidad de clientes"
   ) +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#E74C3C", "yes" = "#3498DB"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Default vs Y:**
@@ -96,25 +96,44 @@ La distribución del historial de impago muestra un patrón muy claro y relevant
 data_plot <- data %>%
   group_by(y) %>%
   count(job, name = "n") %>%
-  mutate(categoria = job,
-         variable = "job",
-         porcentaje = (n / sum(n)) * 100) %>%
+  mutate(
+    categoria = job,
+    variable = "job",
+    porcentaje = (n / sum(n)) * 100
+  ) %>%
   select(y, categoria, n, porcentaje)
 
 data_plot %>%
-  mutate(categoria = reorder(categoria, -n, sum)) %>%  # ordenar por frecuencia total
+  mutate(categoria = reorder(categoria, -n, sum)) %>%
   ggplot(aes(x = categoria, y = n, fill = y)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-  geom_text(aes(label = paste0(n, " (", round(porcentaje, 1), "%)")),
-            position = position_dodge(width = 0.9),
-            vjust = -0.3,
-            size = 3) +
-  labs(title = "Distribución por ocupación (job)",
-       x = "Ocupación",
-       y = "Cantidad de clientes") +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # rotar etiquetas
-  scale_fill_manual(values = c("no" = "#F39C12", "yes" = "#9B59B6"))
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9), width = 0.8) +
+  geom_text(
+    aes(label = paste0(n, "\n(", round(porcentaje, 1), "%)")),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5,
+    lineheight = 0.9,
+    size = 3.5
+  ) +
+  labs(
+    title = "Distribución por ocupación (job)",
+    x = "Ocupación",
+    y = "Cantidad de clientes"
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.20))) +
+  scale_fill_manual(
+    values = c("no" = "#A7C7E7", "yes" = "#A8E6A2"),
+    guide = FALSE   # 🔹 Elimina la leyenda
+  ) +
+  theme_bw(base_size = 13) +
+  theme(
+    plot.title = element_text(size = 14, hjust = 0.5),  # 🔹 Sin negrita
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+    axis.text.y = element_text(size = 10),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+
 ```
 
 **Interpretación Job vs Y:**
@@ -138,7 +157,7 @@ data_plot %>%
   labs(title = "Estado civil (marital)",
        x = "Estado civil", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#1ABC9C", "yes" = "#E67E22"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Marital vs Y:**
@@ -162,7 +181,7 @@ data_plot %>%
   labs(title = "Nivel educativo (education)",
        x = "Educación", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#2ECC71", "yes" = "#8E44AD"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Education vs Y:**
@@ -186,7 +205,7 @@ data_plot %>%
   labs(title = "Préstamo de vivienda (housing)",
        x = "Housing", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#34495E", "yes" = "#F1C40F"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Housing vs Y:**
@@ -210,7 +229,7 @@ data_plot %>%
   labs(title = "Préstamo personal (loan)",
        x = "Loan", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#16A085", "yes" = "#D35400"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Loan vs Y:**
@@ -234,7 +253,7 @@ data_plot %>%
   labs(title = "Tipo de contacto (contact)",
        x = "Tipo de contacto", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#7F8C8D", "yes" = "#C0392B"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Contact vs Y:**
@@ -258,8 +277,598 @@ data_plot %>%
   labs(title = "Resultado de campaña previa (poutcome)",
        x = "Poutcome", y = "Cantidad de clientes") +
   theme_bw() +
-  scale_fill_manual(values = c("no" = "#EC7063", "yes" = "#5DADE2"))
+  scale_fill_manual(values = c("no" = "lightblue", "yes" = "lightgreen"))
 ```
 
 **Interpretación Poutcome vs Y:**
 El resultado de campañas previas es un predictor extremadamente relevante del comportamiento futuro. Entre quienes respondieron afirmativamente (`yes`), predominan claramente los casos de success y unknown, con muy pocos casos de failure. En contraste, en el grupo de respuesta negativa (`no`), domina abrumadoramente la categoría unknown, seguida por failure, con muy pocos casos de success. Los clientes con historial de éxito en campañas anteriores muestran una probabilidad significativamente mayor de volver a responder positivamente, mientras que aquellos con historial de failure tienden a rechazar ofertas futuras. Esta variable debería ser fundamental para la segmentación y priorización de contactos en futuras campañas.
+
+
+
+
+
+## Tecnicas inferenciales entre las variables cuantitativas y la variable objetivo
+
+A continuacion se realizan pruebas de comparacion de medias entre dos grupos 
+independientes, sabemos que no hay dependencia entre los grupos por lo que no 
+haremos pruebas para pareados. Para llevar a cabo dichas pruebas, se deben 
+confirmar unos supuestos previamente:
+
+```{r}
+datos <- data
+library(tidyverse)
+library(nortest)
+df_y_yes <- datos %>% 
+  filter(y == "yes")
+df_y_no <- datos %>% 
+  filter(y == "no")
+```
+
+**balance - y:**
+
+Por medio de la prueba de normalidad de Kolmogorov - Smirnov verificamos 
+que los datos de ambas muestras presenten un comportamiento normal.
+
+```{r}
+datos %>%
+  group_by(y) %>%
+  summarise(n = length(balance),
+            est_ks = ks.test(scale(balance),'pnorm')$statistic,
+            p_ks = ks.test(scale(balance),'pnorm')$p.value,
+            estsw = shapiro.test(balance)$statistic,
+            p_sw = shapiro.test(balance)$p.value,
+            est_lt = lillie.test(balance)$statistic,
+            p_lt = lillie.test(balance)$p.value)
+```
+
+Aplicando las pruebas de lillie.test, Kolmogorov-Smirnov y Shapiro-Wilk 
+podemos evidenciar que los datos de la categoria numerica $balance$ no presentan 
+normalidad en ninguno de los dos grupos, esto se concluye a partir de los **p-valores**
+observados, donde todos son notoriamente inferiores a 0.05.
+Por eso, procedemos a usar Wilcoxon rank-sum test o U-test de Mann-Whitney;
+en este contexto, se recomienda emplear el test de Levene o el test no paramétrico de Fligner-Killeen, 
+ambos diseñados para evaluar la homogeneidad de varianzas y que utilizan la mediana como medida de tendencia central, 
+lo que los hace adecuados en presencia de datos no normales.
+
+```{r}
+library(car)
+leveneTest(balance ~ y, data = datos, center = "median")
+```
+
+La prueba de Levene nos indica que no se encuentran diferencias significativas
+en la varianza del saldo promedio anual de la cuenta bancaria entre los grupos $(F_{(1)} = 0.1056, \; p\text{-}valor = 0.7452)$.
+Ahora comprobemos si hay diferencia entre los grupos:
+
+```{r}
+library(rstatix)
+datos %>%
+  wilcox_test(balance ~ y, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que hay evidencia 
+estadísticamente significativa de una diferencia en el saldo promedio anual de
+la cuenta bancaria entre los clientes que aceptan y los que no aceptan contratar
+un deposito a plazo fijo $(U = 893230, \; p\text{-}valor = 0.00000011)$.
+
+**age - y**
+
+Por medio de la prueba de normalidad de Kolmogorov - Smirnov verificamos 
+que los datos de ambas muestras presenten un comportamiento normal.
+
+```{r}
+datos %>%
+  group_by(y) %>%
+  summarise(n2 = length(age),
+            est_ks2 = ks.test(scale(age),'pnorm')$statistic,
+            p_ks2 = ks.test(scale(age),'pnorm')$p.value,
+            estsw2 = shapiro.test(age)$statistic,
+            p_sw2 = shapiro.test(age)$p.value,
+            est_lt2 = lillie.test(age)$statistic,
+            p_lt2 = lillie.test(age)$p.value)
+```
+
+Aplicando las pruebas de lillie.test, Kolmogorov-Smirnov y Shapiro-Wilk 
+podemos evidenciar que los datos de la categoria numerica $age$ no presentan 
+normalidad en ninguno de los dos grupos, esto se concluye a partir de los **p-valores**
+observados, donde todos son notoriamente inferiores a 0.05 como en la categoria $balance$ analizada anteriormente.
+Por eso, procedemos a usar Wilcoxon rank-sum test o U-test de Mann-Whitney;
+en este contexto, se recomienda emplear el test de Levene.
+
+```{r}
+leveneTest(age ~ y, data = datos, center = "median")
+```
+
+La prueba de Levene nos muestra que existen diferencias significativas
+en la varianza de las edades de los usuarios entre los grupos $(F_{(1)} = 50.677, \; p\text{-}valor = 1.261e-12)$.
+Ahora comprobemos si hay diferencia entre los grupos, dado que no se requiere 
+normalidad ni homocedasticidad estricta, usaremos U-test de Mann-Whitney:
+
+```{r}
+datos %>%
+  wilcox_test(age ~ y, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que no hay evidencia estadísticamente 
+significativa de una diferencia en la edad de los usuarios entre el grupo que acepta
+y el que no acepta contratar un deposito a plazo fijo $(U = 1011360, \; p\text{-}valor = 0.274)$.
+
+**duration - y**
+
+Por medio de la prueba de normalidad de Kolmogorov - Smirnov verificamos 
+que los datos de ambas muestras presenten un comportamiento normal.
+
+```{r}
+datos %>%
+  group_by(y) %>%
+  summarise(n3 = length(duration),
+            est_ks3 = ks.test(scale(duration),'pnorm')$statistic,
+            p_ks3 = ks.test(scale(duration),'pnorm')$p.value,
+            estsw3 = shapiro.test(duration)$statistic,
+            p_sw3 = shapiro.test(duration)$p.value,
+            est_lt3 = lillie.test(duration)$statistic,
+            p_lt3 = lillie.test(duration)$p.value)
+```
+
+Empleando las pruebas de lillie.test, Kolmogorov-Smirnov y Shapiro-Wilk
+podemos notar que los datos de la categoria numerica $duration$ tampoco presentan 
+normalidad en ninguno de los dos grupos, esto se concluye a partir de los **p-valores**
+observados, donde todos son notoriamente inferiores a 0.05 como en la categoria $balance$ y $age$ analizadas previamente.
+A continuacion, procedemos a usar Wilcoxon rank-sum test o U-test de Mann-Whitney;
+en este contexto, se recomienda emplear el test de Levene.
+
+```{r}
+leveneTest(duration ~ y, data = datos, center = "median")
+```
+
+La prueba de Levene señala que existen diferencias significativas
+en la varianza de las duraciones de la ultima llamada entre los grupos $(F_{(1)} = 310.43, \; p\text{-}valor < 2.2e-16)$.
+Verifiquemos si hay diferencia entre los grupos; debido a que no hay normalidad
+ni homocedasticidad, usaremos U-test de Mann-Whitney:
+
+```{r}
+datos %>%
+  wilcox_test(duration ~ y, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que hay evidencia 
+estadísticamente significativa de una diferencia en la duracion de la ultima
+llamada entre los clientes que aceptan y los que no aceptan contratar
+un deposito a plazo fijo $(U = 385525, \; p\text{-}valor = 2.33e-121)$.
+
+**campaign - y**
+
+Veamos si los datos presentan comportamiento normal:
+
+```{r}
+datos %>%
+  group_by(y) %>%
+  summarise(n4 = length(campaign),
+            est_ks4 = ks.test(scale(campaign),'pnorm')$statistic,
+            p_ks4 = ks.test(scale(campaign),'pnorm')$p.value,
+            estsw4 = shapiro.test(campaign)$statistic,
+            p_sw4 = shapiro.test(campaign)$p.value,
+            est_lt4 = lillie.test(campaign)$statistic,
+            p_lt4 = lillie.test(campaign)$p.value)
+```
+
+A partir de las pruebas de Lilliefors (lillie.test), Kolmogorov-Smirnov y 
+Shapiro-Wilk, se observa que la variable numérica $campaign$ tampoco sigue 
+una distribución normal en ninguno de los dos grupos analizados. Esta 
+conclusión se fundamenta en los **p-valores** obtenidos, los cuales son 
+consistentemente menores a 0.05, al igual que lo evidenciado previamente en las 
+variables $balance$, $age$ y $duration$.
+Por consiguiente, se procede a aplicar la prueba de Wilcoxon rank-sum o
+U de Mann-Whitney. Se recomienda además utilizar la prueba 
+de Levene para evaluar la homogeneidad de varianzas.
+
+```{r}
+leveneTest(campaign ~ y, data = datos, center = "median")
+```
+
+La prueba de Levene indica que existen diferencias significativas en la varianza
+de la variable $campaign$ (numero de contactos realizados durante la campaña actual) 
+entre los grupos analizados $(F_{(1)} = 10.418, \; p\text{-}valor = 0.001257)$.
+Dado que los datos no cumplen con los supuestos de normalidad ni de homocedasticidad, 
+se procederá a aplicar la prueba U de Mann-Whitney para verificar si existen 
+diferencias significativas entre los grupos.
+
+```{r}
+datos %>%
+  wilcox_test(campaign ~ y, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que hay evidencia estadísticamente 
+significativa de una diferencia en el numero de contactos realizados durante la 
+campaña actual entre los clientes que aceptan y los que no aceptan contratar
+un deposito a plazo fijo $(U = 1158722, \; p\text{-}valor = 0.000014)$.
+
+**pdays - y**
+
+Comprobamos primeramente la normalidad de los datos de ambos grupos:
+
+```{r}
+datos %>% 
+  group_by(y) %>%
+  summarise(n5 = length(pdays),
+            est_ks5 = ks.test(scale(pdays),'pnorm')$statistic,
+            p_ks5 = ks.test(scale(pdays),'pnorm')$p.value,
+            estsw5 = shapiro.test(pdays)$statistic,
+            p_sw5 = shapiro.test(pdays)$p.value,
+            est_lt5 = lillie.test(pdays)$statistic,
+            p_lt5 = lillie.test(pdays)$p.value)
+```
+
+De acuerdo con los resultados de las pruebas de Lilliefors (lillie.test), 
+Kolmogorov-Smirnov y Shapiro-Wilk, la variable numérica $pdays$ 
+tampoco presenta una distribución normal en ninguno de los grupos analizados. 
+Esta conclusión se basa en los **p-valores**, los cuales son menores a 0.05
+en todos los casos, tal como se observó previamente en las variables $balance$, 
+$age$, $duration$ y $campaign$.
+En consecuencia, se opta por aplicar la prueba U de Mann-Whitney. 
+Además, se sugiere emplear la prueba de Levene para verificar la homogeneidad 
+de las varianzas.
+
+```{r}
+leveneTest(pdays ~ y, data = datos, center = "median")
+```
+
+La prueba de Levene indica que existen diferencias significativas en la varianza
+de la variable $pdays$ (numero de días transcurridos desde el último contacto previo) 
+entre los grupos analizados $(F_{(1)} = 49.495, \; p\text{-}valor = 2.287e-12)$.
+Dado que los datos no cumplen con los supuestos de normalidad ni de homocedasticidad, 
+se procederá a aplicar la prueba U de Mann-Whitney para verificar si existen 
+diferencias significativas entre los grupos.
+
+```{r}
+datos %>%
+  wilcox_test(pdays ~ y, 
+              paired = FALSE)
+```
+
+La prueba de U de Mann-Whitney, nos muestra que hay evidencia estadísticamente 
+significativa de una diferencia en el numero de dias transcurridos desde el
+ultimo contacto previo entre los clientes que aceptan y los que no aceptan contratar
+un deposito a plazo fijo $(U = 852275, \; p\text{-}valor = 5.72e-24)$.
+
+**Conclusion**
+
+Resumiendo la informacion suministrada por las pruebas, es de suma importancia resaltar
+la relevancia de la variable $duration$ (primordialmente), la cual muestra diferencias 
+significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogandola como una variable fuerte en relacion con la variable objetivo. Seguido a la variable $duration$, las variables $pdays$, $campaign$ y $balance$ señalan diferencias significativas entre los grupos; y por ultimo, la variable $age$ definitivamente no es de mayor impacto y por tanto no es necesario tenerla en cuenta para predecir la variable objetivo $y$.
+
+
+
+
+
+
+
+
+
+## Tecnicas inferenciales entre las variables categoricas y la variable objetivo
+
+
+**TABLA JOB vs Y**
+```{r}
+bd <- data
+observados <- table(bd$job, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+agru <- rbind(
+  "unemployed/unknown" = colSums(observados[c("unemployed", "unknown"), ]),
+  observados[!rownames(observados) %in% c("unemployed", "unknown"), ]
+)
+agru
+
+filas <- rowSums(agru)
+columnas <- colSums(agru)
+totalg <- sum(agru)
+
+esperados_n <- outer(filas, columnas, FUN = function(f,c) f*c / totalg)
+dimnames(esperados_n) <- dimnames(agru)
+esperados_n
+
+chi_cuadrado_n <- sum((agru - esperados_n)^2 / esperados_n)
+chi_cuadrado_n
+
+df <- (nrow(agru)-1) * (ncol(agru)-1)
+df
+
+alpha <- 0.05
+valor_critico <- qchisq(1 - alpha, df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado_n > valor_critico
+rechaza_H0
+
+p_value <- pchisq(chi_cuadrado_n, df, lower.tail = FALSE)
+p_value
+```
+
+**TABLA MARITAL vs Y**
+```{r}
+observados <- table(bd$marital, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA EDUCATION vs Y**
+```{r}
+observados <- table(bd$education, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA DEFAULT vs Y**
+```{r}
+observados <- table(bd$default, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA HOUSING vs Y**
+```{r}
+observados <- table(bd$housing, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA LOAN vs Y**
+```{r}
+observados <- table(bd$loan, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA CONTACT vs Y**
+```{r}
+observados <- table(bd$contact, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+**TABLA POUTCOME vs Y**
+```{r}
+observados <- table(bd$poutcome, bd$y)
+observados
+
+filas_totales <- rowSums(observados)
+col_totales <- colSums(observados)
+total_general <- sum(observados)
+
+esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
+dimnames(esperados) <- dimnames(observados)
+esperados
+
+chi_cuadrado <- sum((observados - esperados)^2 / esperados)
+chi_cuadrado
+
+df <- (nrow(observados)-1)*(ncol(observados)-1)
+df
+
+alfa <- 0.05
+valor_critico <- qchisq(1-alfa,df)
+valor_critico
+
+rechaza_H0 <- chi_cuadrado > valor_critico
+rechaza_H0
+
+if (rechaza_H0) {
+  conclusion <- "Como chi_cuadrado es mayor que el valor crítico, rechazamos H0."
+} else {
+  conclusion <- "Como chi_cuadrado es menor que el valor crítico, aceptamos H0."
+}
+conclusion
+
+valor_p <- pchisq(chi_cuadrado,df,lower.tail = FALSE)
+valor_p
+
+chisq.test(observados)
+```
+
+
+
+

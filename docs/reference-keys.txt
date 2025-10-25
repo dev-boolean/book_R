@@ -2,3 +2,13 @@ analisis-de-la-variable-objetivo-numericas-y-categoricas-indepentiendes
 análisis-exploratorio-bivariado
 bivariado-con-variables-categoricas
 referencias
+tecnicas-inferenciales-entre-las-variables-cuantitativas-y-la-variable-objetivo
+tecnicas-inferenciales-entre-las-variables-categoricas-y-la-variable-objetivo
+tabla-job-vs-y
+tabla-marital-vs-y
+tabla-education-vs-y
+tabla-default-vs-y
+tabla-housing-vs-y
+tabla-loan-vs-y
+tabla-contact-vs-y
+tabla-poutcome-vs-y
