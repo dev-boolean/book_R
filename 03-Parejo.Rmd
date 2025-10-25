@@ -564,7 +564,7 @@ total_general <- sum(observados)
 esperados <- outer(filas_totales, col_totales, FUN = function(f,c) f*c / total_general)
 dimnames(esperados) <- dimnames(observados)
 esperados
-
+#AQUI AGRUPAMOS unemployed/con unknown para que nos queden los esperados mayores a 5
 agru <- rbind(
   "unemployed/unknown" = colSums(observados[c("unemployed", "unknown"), ]),
   observados[!rownames(observados) %in% c("unemployed", "unknown"), ]
@@ -595,6 +595,8 @@ rechaza_H0
 p_value <- pchisq(chi_cuadrado_n, df, lower.tail = FALSE)
 p_value
 ```
+Se rechaza la hipótesis nula, por lo tanto, existe una relación significativa entre el tipo de empleo del cliente y su respuesta a la campaña de depósito a plazo. Esto indica que el tipo de trabajo influye en la probabilidad de que el cliente acepte o no el producto ofrecido.
+
 
 **TABLA MARITAL vs Y**
 ```{r}
@@ -634,6 +636,7 @@ valor_p
 
 chisq.test(observados)
 ```
+Se rechaza la hipótesis nula, por lo que hay evidencia estadística de una relación entre el estado civil del cliente y su respuesta a la campaña. Esto sugiere que el estado civil podría estar asociado a distintos niveles de interés o disponibilidad para contratar el depósito.
 
 **TABLA EDUCATION vs Y**
 ```{r}
@@ -673,6 +676,7 @@ valor_p
 
 chisq.test(observados)
 ```
+Dado que se rechaza la hipótesis nula, se concluye que existe una asociación significativa entre el nivel educativo del cliente y su decisión de aceptar el depósito a plazo. Esto puede reflejar diferencias en conocimiento financiero o en confianza hacia los productos bancarios según la formación académica.
 
 **TABLA DEFAULT vs Y**
 ```{r}
@@ -712,6 +716,8 @@ valor_p
 
 chisq.test(observados)
 ```
+No se rechaza la hipótesis nula, lo que indica que no existe una relación estadísticamente significativa entre tener deudas en incumplimiento y la respuesta del cliente. En este caso, el hecho de tener o no un crédito en mora no influye de manera importante en la decisión de aceptar el producto ofrecido.
+
 
 **TABLA HOUSING vs Y**
 ```{r}
@@ -751,6 +757,9 @@ valor_p
 
 chisq.test(observados)
 ```
+Existe evidencia estadísticamente significativa (p < 0.05) para rechazar la hipótesis nula, por lo tanto, el tener o no un crédito hipotecario está asociado con el interés en adquirir un depósito a plazo fijo.
+Es decir, el comportamiento de los clientes frente a la oferta de depósito varía según si poseen o no una hipoteca.
+
 
 **TABLA LOAN vs Y**
 ```{r}
@@ -790,6 +799,8 @@ valor_p
 
 chisq.test(observados)
 ```
+Se rechaza la hipótesis nula, indicando que tener un préstamo personal está asociado con el interés en un depósito a plazo fijo.
+En otras palabras, el interés por el depósito no es independiente del hecho de tener un préstamo, lo cual puede reflejar diferencias en el perfil financiero o capacidad de ahorro de los clientes.
 
 **TABLA CONTACT vs Y**
 ```{r}
@@ -829,6 +840,8 @@ valor_p
 
 chisq.test(observados)
 ```
+Existe evidencia estadísticamente significativa para rechazar la hipótesis nula , esto significa que el tipo de medio de contacto influye significativamente en la probabilidad de que el cliente esté interesado en el depósito a plazo fijo.
+Es decir, la respuesta del cliente varía según el canal de comunicación utilizado.
 
 **TABLA POUTCOME vs Y**
 ```{r}
@@ -868,7 +881,8 @@ valor_p
 
 chisq.test(observados)
 ```
-
+Se rechaza la hipótesis nula, lo que indica que existe una relación muy fuerte entre el resultado de la campaña anterior y el interés actual del cliente.
+En particular, los clientes cuyo resultado previo fue “success” muestran una probabilidad mucho mayor de aceptar la oferta nuevamente, lo que evidencia un patrón de comportamiento repetitivo positivo.
 
 
 

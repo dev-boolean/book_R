@@ -815,11 +815,12 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ##   technician    679.49569  88.504313
 ##   unemployed    113.24928  14.750719
 ##   unknown        33.62088   4.379120</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="bivariado-con-variables-categoricas.html#cb68-1" tabindex="-1"></a>agru <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
-<span id="cb68-2"><a href="bivariado-con-variables-categoricas.html#cb68-2" tabindex="-1"></a>  <span class="st">&quot;unemployed/unknown&quot;</span> <span class="ot">=</span> <span class="fu">colSums</span>(observados[<span class="fu">c</span>(<span class="st">&quot;unemployed&quot;</span>, <span class="st">&quot;unknown&quot;</span>), ]),</span>
-<span id="cb68-3"><a href="bivariado-con-variables-categoricas.html#cb68-3" tabindex="-1"></a>  observados[<span class="sc">!</span><span class="fu">rownames</span>(observados) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;unemployed&quot;</span>, <span class="st">&quot;unknown&quot;</span>), ]</span>
-<span id="cb68-4"><a href="bivariado-con-variables-categoricas.html#cb68-4" tabindex="-1"></a>)</span>
-<span id="cb68-5"><a href="bivariado-con-variables-categoricas.html#cb68-5" tabindex="-1"></a>agru</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="bivariado-con-variables-categoricas.html#cb68-1" tabindex="-1"></a><span class="co">#AQUI AGRUPAMOS unemployed/con unknown para que nos queden los esperados mayores a 5</span></span>
+<span id="cb68-2"><a href="bivariado-con-variables-categoricas.html#cb68-2" tabindex="-1"></a>agru <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb68-3"><a href="bivariado-con-variables-categoricas.html#cb68-3" tabindex="-1"></a>  <span class="st">&quot;unemployed/unknown&quot;</span> <span class="ot">=</span> <span class="fu">colSums</span>(observados[<span class="fu">c</span>(<span class="st">&quot;unemployed&quot;</span>, <span class="st">&quot;unknown&quot;</span>), ]),</span>
+<span id="cb68-4"><a href="bivariado-con-variables-categoricas.html#cb68-4" tabindex="-1"></a>  observados[<span class="sc">!</span><span class="fu">rownames</span>(observados) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;unemployed&quot;</span>, <span class="st">&quot;unknown&quot;</span>), ]</span>
+<span id="cb68-5"><a href="bivariado-con-variables-categoricas.html#cb68-5" tabindex="-1"></a>)</span>
+<span id="cb68-6"><a href="bivariado-con-variables-categoricas.html#cb68-6" tabindex="-1"></a>agru</span></code></pre></div>
 <pre><code>##                     no yes
 ## unemployed/unknown 146  20
 ## admin.             420  58
@@ -867,6 +868,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="bivariado-con-variables-categoricas.html#cb80-1" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_cuadrado_n, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb80-2"><a href="bivariado-con-variables-categoricas.html#cb80-2" tabindex="-1"></a>p_value</span></code></pre></div>
 <pre><code>## [1] 1.65812e-10</code></pre>
+<p>Se rechaza la hipótesis nula, por lo tanto, existe una relación significativa entre el tipo de empleo del cliente y su respuesta a la campaña de depósito a plazo. Esto indica que el tipo de trabajo influye en la probabilidad de que el cliente acepte o no el producto ofrecido.</p>
 <p><strong>TABLA MARITAL vs Y</strong></p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="bivariado-con-variables-categoricas.html#cb82-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>marital, bd<span class="sc">$</span>y)</span>
 <span id="cb82-2"><a href="bivariado-con-variables-categoricas.html#cb82-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -916,6 +918,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 19.03, df = 2, p-value = 7.374e-05</code></pre>
+<p>Se rechaza la hipótesis nula, por lo que hay evidencia estadística de una relación entre el estado civil del cliente y su respuesta a la campaña. Esto sugiere que el estado civil podría estar asociado a distintos niveles de interés o disponibilidad para contratar el depósito.</p>
 <p><strong>TABLA EDUCATION vs Y</strong></p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="bivariado-con-variables-categoricas.html#cb100-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>education, bd<span class="sc">$</span>y)</span>
 <span id="cb100-2"><a href="bivariado-con-variables-categoricas.html#cb100-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -967,6 +970,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 15.237, df = 3, p-value = 0.001625</code></pre>
+<p>Dado que se rechaza la hipótesis nula, se concluye que existe una asociación significativa entre el nivel educativo del cliente y su decisión de aceptar el depósito a plazo. Esto puede reflejar diferencias en conocimiento financiero o en confianza hacia los productos bancarios según la formación académica.</p>
 <p><strong>TABLA DEFAULT vs Y</strong></p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="bivariado-con-variables-categoricas.html#cb118-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>default, bd<span class="sc">$</span>y)</span>
 <span id="cb118-2"><a href="bivariado-con-variables-categoricas.html#cb118-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -1014,6 +1018,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 1.1844e-27, df = 1, p-value = 1</code></pre>
+<p>Se rechaza la hipótesis nula, lo que implica que tener o no deudas en incumplimiento se relaciona significativamente con la respuesta del cliente. En otras palabras, el historial crediticio del cliente influye en la probabilidad de que acepte el producto bancario ofrecido.</p>
 <p><strong>TABLA HOUSING vs Y</strong></p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="bivariado-con-variables-categoricas.html#cb136-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>housing, bd<span class="sc">$</span>y)</span>
 <span id="cb136-2"><a href="bivariado-con-variables-categoricas.html#cb136-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -1061,6 +1066,8 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 48.885, df = 1, p-value = 2.715e-12</code></pre>
+<p>Existe evidencia estadísticamente significativa (p &lt; 0.05) para rechazar la hipótesis nula, por lo tanto, el tener o no un crédito hipotecario está asociado con el interés en adquirir un depósito a plazo fijo.
+Es decir, el comportamiento de los clientes frente a la oferta de depósito varía según si poseen o no una hipoteca.</p>
 <p><strong>TABLA LOAN vs Y</strong></p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="bivariado-con-variables-categoricas.html#cb154-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>loan, bd<span class="sc">$</span>y)</span>
 <span id="cb154-2"><a href="bivariado-con-variables-categoricas.html#cb154-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -1108,6 +1115,8 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 21.872, df = 1, p-value = 2.915e-06</code></pre>
+<p>Se rechaza la hipótesis nula, indicando que tener un préstamo personal está asociado con el interés en un depósito a plazo fijo.
+En otras palabras, el interés por el depósito no es independiente del hecho de tener un préstamo, lo cual puede reflejar diferencias en el perfil financiero o capacidad de ahorro de los clientes.</p>
 <p><strong>TABLA CONTACT vs Y</strong></p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="bivariado-con-variables-categoricas.html#cb172-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>contact, bd<span class="sc">$</span>y)</span>
 <span id="cb172-2"><a href="bivariado-con-variables-categoricas.html#cb172-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -1157,6 +1166,8 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 87.87, df = 2, p-value &lt; 2.2e-16</code></pre>
+<p>Existe evidencia estadísticamente significativa para rechazar la hipótesis nula , esto significa que el tipo de medio de contacto influye significativamente en la probabilidad de que el cliente esté interesado en el depósito a plazo fijo.
+Es decir, la respuesta del cliente varía según el canal de comunicación utilizado.</p>
 <p><strong>TABLA POUTCOME vs Y</strong></p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="bivariado-con-variables-categoricas.html#cb190-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>poutcome, bd<span class="sc">$</span>y)</span>
 <span id="cb190-2"><a href="bivariado-con-variables-categoricas.html#cb190-2" tabindex="-1"></a>observados</span></code></pre></div>
@@ -1208,6 +1219,8 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 386.88, df = 3, p-value &lt; 2.2e-16</code></pre>
+<p>Se rechaza la hipótesis nula, lo que indica que existe una relación muy fuerte entre el resultado de la campaña anterior y el interés actual del cliente.
+En particular, los clientes cuyo resultado previo fue “success” muestran una probabilidad mucho mayor de aceptar la oferta nuevamente, lo que evidencia un patrón de comportamiento repetitivo positivo.</p>
 
 </div>
 </div>
