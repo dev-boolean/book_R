@@ -776,6 +776,9 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 </div>
 <div id="tecnicas-inferenciales-entre-las-variables-categoricas-y-la-variable-objetivo" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Tecnicas inferenciales entre las variables categoricas y la variable objetivo<a href="bivariado-con-variables-categoricas.html#tecnicas-inferenciales-entre-las-variables-categoricas-y-la-variable-objetivo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A continuación, se presentan los resultados del análisis de asociación entre diferentes variables categóricas del conjunto de datos y la variable objetivo Y, que representa la respuesta del cliente a la campaña de depósito a plazo.
+Para este propósito, se utilizaron tablas de contingencia que permiten observar la distribución conjunta de las categorías, junto con la prueba de Chi-cuadrado de independencia, la cual evalúa si existe una relación estadísticamente significativa entre cada variable independiente y la respuesta del cliente.
+De esta manera, se busca determinar qué características de los clientes están asociadas a una mayor o menor probabilidad de aceptar el producto ofrecido por la entidad bancaria.</p>
 <p><strong>TABLA JOB vs Y</strong></p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="bivariado-con-variables-categoricas.html#cb64-1" tabindex="-1"></a>bd <span class="ot">&lt;-</span> data</span>
 <span id="cb64-2"><a href="bivariado-con-variables-categoricas.html#cb64-2" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>job, bd<span class="sc">$</span>y)</span>
@@ -1018,7 +1021,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 ## 
 ## data:  observados
 ## X-squared = 1.1844e-27, df = 1, p-value = 1</code></pre>
-<p>Se rechaza la hipótesis nula, lo que implica que tener o no deudas en incumplimiento se relaciona significativamente con la respuesta del cliente. En otras palabras, el historial crediticio del cliente influye en la probabilidad de que acepte el producto bancario ofrecido.</p>
+<p>No se rechaza la hipótesis nula, lo que indica que no existe una relación estadísticamente significativa entre tener deudas en incumplimiento y la respuesta del cliente. En este caso, el hecho de tener o no un crédito en mora no influye de manera importante en la decisión de aceptar el producto ofrecido.</p>
 <p><strong>TABLA HOUSING vs Y</strong></p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="bivariado-con-variables-categoricas.html#cb136-1" tabindex="-1"></a>observados <span class="ot">&lt;-</span> <span class="fu">table</span>(bd<span class="sc">$</span>housing, bd<span class="sc">$</span>y)</span>
 <span id="cb136-2"><a href="bivariado-con-variables-categoricas.html#cb136-2" tabindex="-1"></a>observados</span></code></pre></div>
