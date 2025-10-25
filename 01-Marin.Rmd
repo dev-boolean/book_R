@@ -1,4 +1,4 @@
-# Analisis de la variable objetivo, numericas y categoricas indepentiendes
+# Analisis de la variable objetivo, numericas y categoricas independientes
 
 ```{r marin-setup, include=FALSE}
 # Configuración específica para este capítulo
