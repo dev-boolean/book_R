@@ -549,6 +549,7 @@ significativas entre ambos grupos y confirma lo proyectado en el EDA, catalogand
 
 
 ## Tecnicas inferenciales entre las variables categoricas y la variable objetivo
+
 A continuación, se presentan los resultados del análisis de asociación entre diferentes variables categóricas del conjunto de datos y la variable objetivo Y, que representa la respuesta del cliente a la campaña de depósito a plazo.
 Para este propósito, se utilizaron tablas de contingencia que permiten observar la distribución conjunta de las categorías, junto con la prueba de Chi-cuadrado de independencia, la cual evalúa si existe una relación estadísticamente significativa entre cada variable independiente y la respuesta del cliente.
 De esta manera, se busca determinar qué características de los clientes están asociadas a una mayor o menor probabilidad de aceptar el producto ofrecido por la entidad bancaria.
