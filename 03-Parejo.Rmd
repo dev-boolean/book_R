@@ -889,5 +889,10 @@ chisq.test(observados)
 Se rechaza la hipótesis nula, lo que indica que existe una relación muy fuerte entre el resultado de la campaña anterior y el interés actual del cliente.
 En particular, los clientes cuyo resultado previo fue “success” muestran una probabilidad mucho mayor de aceptar la oferta nuevamente, lo que evidencia un patrón de comportamiento repetitivo positivo.
 
+En conclusión, los resultados del análisis de asociación mediante la prueba de Chi-cuadrado evidencian que la mayoría de las variables categóricas analizadas presentan una relación significativa con la respuesta del cliente a la campaña de depósito a plazo.
+Factores como el tipo de empleo, estado civil, nivel educativo, tenencia de hipoteca o préstamo, medio de contacto y resultado de campañas previas influyen directamente en la probabilidad de aceptación del producto.
+Por el contrario, variables como el historial de impago no muestran una relación significativa, lo que sugiere que el comportamiento frente al producto no depende necesariamente del estado crediticio.
+Estos hallazgos resultan valiosos para segmentar adecuadamente la base de clientes y optimizar las estrategias de marketing, enfocándose en aquellos grupos con mayor propensión a aceptar la oferta bancaria.
+
 
 
